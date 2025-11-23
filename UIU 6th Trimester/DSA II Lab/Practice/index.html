@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      SEO & Sharing Meta Tags:
+      - Optimized title for better search ranking.
+      - Refined meta description to be more compelling and action-oriented.
+      - Added rel="canonical" to prevent duplicate content issues.
+      - Enhanced Open Graph and Twitter tags for social sharing.
+    -->
+    <title>Sourav Saha</title>
+    <meta
+      name="description"
+      content="Hi, I'm Sourav Saha, a passionate Computer Science student and aspiring developer from Bangladesh. Explore my projects, technical articles, and journey in software development and tech leadership. Let's connect and build something great!"
+    />
+    <meta
+      name="keywords"
+      content="Sourav Saha, sourav, portfolio, computer science, student, developer, tech writer, tech leader, Bangladesh, UIU, Creative IT Institute, Sheba Bondhu, software development, web development"
+    />
+    <link rel="canonical" href="https://sourav.com.bd/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sourav.com.bd/" />
+    <meta
+      property="og:title"
+      content="Sourav Saha - Computer Science Student, Developer & Tech Writer"
+    />
+    <meta
+      property="og:description"
+      content="A passionate Computer Science student, aspiring developer, and tech writer. Explore my projects and articles."
+    />
+    <meta
+      property="og:image"
+      content="https://sourav.com.bd/image/share-card.jpg"
+    />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://sourav.com.bd/" />
+    <meta
+      property="twitter:title"
+      content="Sourav Saha - Computer Science Student, Developer & Tech Writer"
+    />
+    <meta
+      property="twitter:description"
+      content="A passionate Computer Science student, aspiring developer, and tech writer. Explore my work."
+    />
+    <meta
+      property="twitter:image"
+      content="https://sourav.com.bd/image/share-card.jpg"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/00c2a9/ffffff?text=SS"
+      type="image/png"
+    />
+
+    <!-- Stylesheets & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+            colors: {
+              "brand-primary": "#ffffff",
+              "brand-secondary": "#cbd5e1",
+              "brand-accent": "#00c2a9",
+              "brand-dark": "#0f172a",
+            },
+            textShadow: { default: "0 2px 4px rgba(0, 0, 0, 0.5)" },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* General & Background */
+      .transition-all {
+        transition: all 0.3s ease-in-out;
+      }
+      html {
+        background: #0f172a;
+        overflow-x: hidden;
+      }
+      body {
+        background: transparent;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        display: block;
+      }
+      .text-glow {
+        text-shadow: 0 0 8px rgba(0, 194, 169, 0.5), 0 0 20px rgba(0, 0, 0, 0.7);
+      }
+      .text-shadow {
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Header & Navigation */
+      header {
+        transition: background-color 0.4s ease-out;
+        opacity: 0;
+        animation: slideDown 1s ease-out 2.6s forwards;
+      }
+      header.header-scrolled {
+        background-color: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-link {
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #00c2a9;
+        transform: translateY(-2px);
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #00c2a9;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-out;
+      }
+      .nav-link:hover::after,
+      .nav-link.active-link::after {
+        transform: scaleX(1);
+      }
+      .nav-link.active-link {
+        color: #00c2a9;
+      }
+
+      /* Preloader - Simple, glowing loader */
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0f172a;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+      }
+      #preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .loader-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #00c2a9;
+        opacity: 0;
+        animation: fadeAndGlow 1.5s ease-in-out forwards;
+      }
+
+      @keyframes fadeAndGlow {
+        0% { opacity: 0; text-shadow: none; }
+        50% { opacity: 1; text-shadow: 0 0 15px #00c2a9, 0 0 30px #00c2a9; }
+        100% { opacity: 1; text-shadow: 0 0 8px rgba(0, 194, 169, 0.5); }
+      }
+
+      /* Main content animations */
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animated-headline .char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(100%) rotate(10deg);
+        transform-origin: bottom left;
+        animation: reveal-char 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+      @keyframes reveal-char {
+        to {
+          opacity: 1;
+          transform: translateY(0) rotate(0);
+        }
+      }
+      .headline-subtitle {
+        height: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        animation: fadeInSub 1s ease-out 4.8s forwards;
+      }
+      @keyframes fadeInSub {
+        to {
+          opacity: 1;
+        }
+      }
+      .explore-button-container {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeInButton 0.8s ease-out 4.5s forwards;
+      }
+      @keyframes fadeInButton {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rotating-text-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .rotating-text-item {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+      }
+      .rotating-text-item.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .rotating-text-item.is-hidden {
+        transform: translateY(-100%);
+      }
+
+      /* Modal and Form */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .modal-overlay:not(.hidden) {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-content {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 0.75rem;
+        width: 95%;
+        height: 90%;
+        max-width: 1200px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+      }
+      .modal-overlay:not(.hidden) .modal-content {
+        transform: scale(1);
+      }
+      .modal-close-btn {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        background-color: #ffffff;
+        color: #0f172a;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 1.5rem;
+        line-height: 32px;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        z-index: 10;
+      }
+      .modal-close-btn:hover {
+        transform: rotate(90deg);
+      }
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #334155;
+        flex-shrink: 0;
+      }
+      .modal-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #ffffff;
+      }
+      .download-btn {
+        background-color: #00c2a9;
+        color: white;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+      }
+      .download-btn:hover {
+        background-color: #00a591;
+      }
+      .iframe-container {
+        flex-grow: 1;
+        padding: 0.5rem;
+      }
+      .iframe-container iframe {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.25rem;
+      }
+
+      /* Card styles */
+      .repo-card,
+      .article-card,
+      .recommendation-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0.5rem;
+      }
+      .repo-card:hover,
+      .article-card:hover,
+      .recommendation-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        border-color: rgba(0, 194, 169, 0.5);
+      }
+      .article-card-thumbnail {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        background-color: #1e293b;
+      }
+      .article-card-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      /* Form styles */
+      .form-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #cbd5e1;
+      }
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .form-input:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: #00c2a9;
+        box-shadow: 0 0 0 2px rgba(0, 194, 169, 0.5);
+      }
+      .submit-btn {
+        width: 100%;
+        background-color: #00c2a9;
+        color: white;
+        font-weight: bold;
+        padding: 0.75rem;
+        border-radius: 9999px;
+        transition: background-color 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .submit-btn:hover {
+        background-color: #00a591;
+      }
+      #mc_embed_signup {
+        background: transparent !important;
+      }
+
+      /* Other interactive elements */
+      .newsletter-popup {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: calc(100% - 3rem);
+        max-width: 400px;
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        transform: translateY(100%);
+        visibility: hidden;
+        transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+      }
+      .newsletter-popup.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+      .newsletter-close-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+      .newsletter-close-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: rotate(90deg);
+      }
+      #back-to-top-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: #00c2a9;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        cursor: pointer;
+        border: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+      }
+      #back-to-top-btn.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      #back-to-top-btn:hover {
+        background-color: #00a591;
+      }
+      .skill-item {
+        margin-bottom: 1.25rem;
+      }
+      .skill-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+      .skill-name {
+        font-weight: 500;
+        color: #cbd5e1;
+      }
+      .skill-percent {
+        font-size: 0.875rem;
+        color: #94a3b8;
+      }
+      .progress-bar-container {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 9999px;
+        height: 8px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        background-color: #00c2a9;
+        height: 100%;
+        border-radius: 9999px;
+        width: 0;
+        transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .progress-bar.animated {
+        width: var(--progress-width);
+      }
+
+      /* Recommendations Carousel Styles */
+      #recommendations-carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; /* For iOS Safari */
+        scroll-behavior: smooth;
+        gap: 1.5rem; /* Space between cards */
+      }
+      /* Hide scrollbar for aesthetics */
+      #recommendations-carousel::-webkit-scrollbar {
+        display: none;
+      }
+      #recommendations-carousel {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+      .rec-card-wrapper {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+      }
+      .rec-nav-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+      }
+      .rec-nav-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    </style>
+
+    <!-- JSON-LD Schema Markup for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://sourav.com.bd/#person",
+            "name": "Sourav Saha",
+            "url": "https://sourav.com.bd/",
+            "image": "https://sourav.com.bd/image/profile.jpg",
+            "sameAs": [
+              "https://www.linkedin.com/in/souravsahapartho/",
+              "https://github.com/souravsahapartho",
+              "https://www.instagram.com/souravsahapartho/",
+              "https://www.facebook.com/souravsahapartho/",
+              "https://x.com/souravpartho",
+              "https://techtalkwithsourav.substack.com/"
+            ],
+            "jobTitle": "Computer Science Student & Developer",
+            "alumniOf": "United International University",
+            "description": "Sourav Saha is a Computer Science student, aspiring developer, and tech writer based in Dhaka, Bangladesh."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://sourav.com.bd/#website",
+            "url": "https://sourav.com.bd/",
+            "name": "Sourav Saha's Portfolio",
+            "description": "The personal portfolio of Sourav Saha, showcasing his projects, articles, and professional journey.",
+            "publisher": {
+              "@id": "https://sourav.com.bd/#person"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="font-sans" oncontextmenu="return false;">
+    <!-- Simple, static preloader -->
+    <div id="preloader">
+      <div class="loader-text">Sourav Saha</div>
+    </div>
+    <canvas id="particle-canvas"></canvas>
+
+    <header class="bg-transparent fixed top-0 left-0 right-0 z-50">
+      <nav
+        class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+        aria-label="Main Navigation"
+      >
+        <a
+          href="#"
+          class="header-logo text-xl md:text-2xl font-bold text-white text-glow"
+          >Sourav Saha</a
+        >
+        <div class="hidden md:flex items-center space-x-6">
+          <a
+            href="#about"
+            class="nav-link text-gray-300 hover:text-brand-accent"
+            >About</a
+          >
+          <a
+            href="#experience-education"
+            class="nav-link text-gray-300 hover:text-brand-accent"
+            >Journey</a
+          >
+          <a
+            href="#skills"
+            class="nav-link text-gray-300 hover:text-brand-accent"
+            >Skills</a
+          >
+          <a
+            href="#portfolio"
+            class="nav-link text-gray-300 hover:text-brand-accent"
+            >Portfolio</a
+          >
+          <a
+            href="#articles"
+            class="nav-link text-gray-300 hover:text-brand-accent"
+            >Articles</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-gray-300 hover:text-brand-accent"
+            >Contact</a
+          >
+          <button
+            class="open-cv-btn bg-brand-accent text-white font-bold py-2 px-5 rounded-full text-sm hover:bg-opacity-90 transition-all"
+          >
+            Download CV
+          </button>
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden focus:outline-none text-white"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </nav>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-black/50 backdrop-blur-md"
+      >
+        <a
+          href="#about"
+          class="block py-2 px-4 text-sm text-gray-200 hover:bg-white/10"
+          >About</a
+        >
+        <a
+          href="#experience-education"
+          class="block py-2 px-4 text-sm text-gray-200 hover:bg-white/10"
+          >Journey</a
+        >
+        <a
+          href="#skills"
+          class="block py-2 px-4 text-sm text-gray-200 hover:bg-white/10"
+          >Skills</a
+        >
+        <a
+          href="#portfolio"
+          class="block py-2 px-4 text-sm text-gray-200 hover:bg-white/10"
+          >Portfolio</a
+        >
+        <a
+          href="#articles"
+          class="block py-2 px-4 text-sm text-gray-200 hover:bg-white/10"
+          >Articles</a
+        >
+        <a
+          href="#contact"
+          class="block py-2 px-4 text-sm text-gray-200 hover:bg-white/10"
+          >Contact</a
+        >
+        <div class="px-4 py-3">
+          <button
+            class="open-cv-btn w-full text-center bg-brand-accent text-white font-bold py-2 px-5 rounded-full text-sm hover:bg-opacity-90 transition-all"
+          >
+            Download CV
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Headline Section -->
+      <section
+        id="home"
+        class="min-h-screen flex items-center px-4 sm:px-6 lg:px-8"
+      >
+        <div class="container mx-auto text-center">
+          <h1
+            class="animated-headline text-4xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-4"
+          >
+            <span class="line-1">Hi,</span><br />
+            <span class="line-2">I'm Sourav Saha</span>
+          </h1>
+          <div
+            class="text-lg md:text-2xl text-brand-secondary text-shadow headline-subtitle mx-auto"
+          >
+            <div
+              id="rotating-text-container"
+              class="rotating-text-container"
+            ></div>
+          </div>
+          <div class="mt-8 explore-button-container">
+            <a
+              href="#about"
+              class="inline-block bg-brand-accent text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105"
+            >
+              Explore My Profile
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="px-4 sm:px-6 lg:px-8 pt-12 md:pt-16">
+        <div class="container mx-auto">
+          <div
+            class="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+            data-aos="fade-right"
+          >
+            <div class="w-full md:w-1/3 flex-shrink-0">
+              <img
+                src="image/profile.jpg"
+                alt="Sourav Saha, a computer science student and aspiring developer."
+                class="rounded-full shadow-2xl w-48 h-48 sm:w-64 sm:h-64 mx-auto object-cover"
+                onerror="this.onerror=null;this.src='https://placehold.co/256x256/0f172a/ffffff?text=Profile+Image';"
+              />
+            </div>
+            <div class="w-full md:w-2/3 text-center md:text-left">
+              <h2
+                class="text-3xl sm:text-4xl font-bold text-white mb-4 text-glow"
+              >
+                About Me
+              </h2>
+              <p class="text-brand-secondary leading-relaxed text-shadow mb-4">
+                I’m Sourav Saha, a passionate Computer Science student at United
+                International University and Campus Ambassador at Creative IT
+                Institute. With a strong interest in technology and creativity,
+                I’m constantly exploring ways to grow, connect, and make an
+                impact.
+              </p>
+              <p class="text-brand-secondary leading-relaxed text-shadow mb-4">
+                <strong>My Mission:</strong> To empower myself and others
+                through continuous learning and practical skill-building.
+              </p>
+              <p class="text-brand-secondary leading-relaxed text-shadow">
+                <strong>My Vision:</strong> To become a tech leader who creates
+                meaningful solutions and inspires others to innovate and grow
+                with purpose.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Journey Section -->
+      <section
+        id="experience-education"
+        class="px-4 sm:px-6 lg:px-8 pt-12 md:pt-16"
+      >
+        <div
+          class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
+        >
+          <div id="experience" data-aos="fade-right">
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-center text-white mb-8 md:mb-12 text-glow"
+            >
+              Experience
+            </h2>
+            <div
+              class="max-w-3xl mx-auto border-l-2 border-brand-accent/30 pl-6 sm:pl-10 relative"
+            >
+              <div class="mb-8 relative">
+                <div
+                  class="absolute -left-[30px] sm:-left-[46px] top-1 w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark"
+                ></div>
+                <h3 class="text-2xl font-bold text-white text-shadow">
+                  Campus Ambassador
+                </h3>
+                <p class="text-lg text-brand-secondary/90 font-medium">
+                  Creative IT Institute
+                </p>
+                <div
+                  class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brand-secondary/70 my-2"
+                >
+                  <span>📍 Dhaka, Bangladesh</span
+                  ><span>📅 June 2024 – Present</span>
+                </div>
+                <ul
+                  class="mt-4 list-disc list-inside space-y-2 text-brand-secondary"
+                >
+                  <li>
+                    Promoting tech learning programs and courses among students
+                    and peers.
+                  </li>
+                  <li>
+                    Organizing and representing the institute at campus events
+                    and workshops.
+                  </li>
+                </ul>
+              </div>
+              <div class="mb-8 relative">
+                <div
+                  class="absolute -left-[30px] sm:-left-[46px] top-1 w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark"
+                ></div>
+                <h3 class="text-2xl font-bold text-white text-shadow">
+                  Campus Ambassador
+                </h3>
+                <p class="text-lg text-brand-secondary/90 font-medium">
+                  Sheba Platform Ltd.
+                </p>
+                <div
+                  class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brand-secondary/70 my-2"
+                >
+                  <span>📍 Dhaka, Bangladesh</span
+                  ><span>📅 July 2024 – Present</span>
+                </div>
+                <ul
+                  class="mt-4 list-disc list-inside space-y-2 text-brand-secondary"
+                >
+                  <li>
+                    Acted as a bridge between Sheba and the student community.
+                  </li>
+                </ul>
+              </div>
+              <div class="relative">
+                <div
+                  class="absolute -left-[30px] sm:-left-[46px] top-1 w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark"
+                ></div>
+                <h3 class="text-2xl font-bold text-white text-shadow">
+                  General Member
+                </h3>
+                <p class="text-lg text-brand-secondary/90 font-medium">
+                  UIU Data Science Club
+                </p>
+                <div
+                  class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brand-secondary/70 my-2"
+                >
+                  <span>📍 United International University</span
+                  ><span>📅 March 2024 – Present</span>
+                </div>
+                <ul
+                  class="mt-4 list-disc list-inside space-y-2 text-brand-secondary"
+                >
+                  <li>
+                    Engaged in data science discussions, workshops, and
+                    knowledge-sharing sessions.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="education" data-aos="fade-left">
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-center text-white mb-8 md:mb-12 text-glow"
+            >
+              Education
+            </h2>
+            <div
+              class="max-w-3xl mx-auto border-l-2 border-brand-accent/30 pl-6 sm:pl-10 relative"
+            >
+              <div class="mb-8 relative">
+                <div
+                  class="absolute -left-[30px] sm:-left-[46px] top-1 w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark"
+                ></div>
+                <h3 class="text-2xl font-bold text-white text-shadow">
+                  Bachelor of Science
+                </h3>
+                <p class="text-lg text-brand-secondary/90 font-medium">
+                  United International University
+                </p>
+                <p
+                  class="inline-block p-2 my-2 bg-brand-accent/10 rounded-md text-brand-accent text-sm font-semibold"
+                >
+                  Computer Science & Engineering
+                </p>
+                <div
+                  class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brand-secondary/70 my-2"
+                >
+                  <span>📍 Dhaka, Bangladesh</span
+                  ><span>📅 September 2023 – Present</span>
+                </div>
+                <h4 class="font-semibold text-brand-secondary/90 mt-4 mb-2">
+                  Activities & Involvement:
+                </h4>
+                <ul
+                  class="list-disc list-inside space-y-1 text-brand-secondary text-sm"
+                >
+                  <li>Active Member: UIUCCL, UIUDS</li>
+                  <li>
+                    Ex. Executive of HR at UIU Entrepreneur Development Forum
+                  </li>
+                  <li>Campus Ambassador Program Activities</li>
+                  <li>Volunteer at Tech Seminars and Events</li>
+                </ul>
+              </div>
+              <div class="mb-8 relative">
+                <div
+                  class="absolute -left-[30px] sm:-left-[46px] top-1 w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark"
+                ></div>
+                <h3 class="text-2xl font-bold text-white text-shadow">
+                  Higher Secondary
+                </h3>
+                <p class="text-lg text-brand-secondary/90 font-medium">
+                  Islamia Government College
+                </p>
+                <div
+                  class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brand-secondary/70 my-2"
+                >
+                  <span>📍 Sirajganj, Bangladesh</span
+                  ><span>📅 July 2019 – 2021</span>
+                </div>
+              </div>
+              <div class="relative">
+                <div
+                  class="absolute -left-[30px] sm:-left-[46px] top-1 w-4 h-4 rounded-full bg-brand-accent border-4 border-brand-dark"
+                ></div>
+                <h3 class="text-2xl font-bold text-white text-shadow">
+                  Secondary School
+                </h3>
+                <p class="text-lg text-brand-secondary/90 font-medium">
+                  B.L. Government High School
+                </p>
+                <div
+                  class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brand-secondary/70 my-2"
+                >
+                  <span>📍 Sirajganj, Bangladesh</span
+                  ><span>📅 2014 – 2018</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="px-4 sm:px-6 lg:px-8 pt-12 md:pt-16">
+        <div class="container mx-auto" data-aos="fade-up">
+          <h2
+            class="text-3xl sm:text-4xl font-bold text-center text-white mb-8 md:mb-12 text-glow"
+          >
+            Skills
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
+          >
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3
+                class="text-2xl font-bold mb-6 text-center text-white text-shadow"
+              >
+                💻 Programming
+              </h3>
+              <div class="space-y-5">
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">C</span
+                    ><span class="skill-percent">85%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 85%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">C++</span
+                    ><span class="skill-percent">80%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 80%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Java</span
+                    ><span class="skill-percent">75%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 75%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">JavaScript</span
+                    ><span class="skill-percent">65%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 65%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">CSS</span
+                    ><span class="skill-percent">90%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 90%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3
+                class="text-2xl font-bold mb-6 text-center text-white text-shadow"
+              >
+                🧠 Technical
+              </h3>
+              <div class="space-y-5">
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Web Content Writing</span
+                    ><span class="skill-percent">90%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 90%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Responsive Web Design</span
+                    ><span class="skill-percent">88%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 88%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name"
+                      >Object-Oriented Programming</span
+                    ><span class="skill-percent">80%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 80%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Microsoft Office Suite</span
+                    ><span class="skill-percent">82%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 82%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Email Marketing</span
+                    ><span class="skill-percent">75%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 75%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white/5 p-6 rounded-lg">
+              <h3
+                class="text-2xl font-bold mb-6 text-center text-white text-shadow"
+              >
+                🎯 Soft Skills
+              </h3>
+              <div class="space-y-5">
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Communication</span
+                    ><span class="skill-percent">90%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 90%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Leadership</span
+                    ><span class="skill-percent">85%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 85%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Teamwork</span
+                    ><span class="skill-percent">95%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 95%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Time Management</span
+                    ><span class="skill-percent">80%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 80%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Public Speaking</span
+                    ><span class="skill-percent">85%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar"
+                      style="--progress-width: 85%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <section id="portfolio" class="px-4 sm:px-6 lg:px-8 pt-12 md:pt-16">
+        <div class="container mx-auto" data-aos="fade-up">
+          <h2
+            class="text-3xl sm:text-4xl font-bold text-center text-white mb-8 md:mb-12 text-glow"
+          >
+            GitHub Repositories
+          </h2>
+          <div
+            id="github-repos-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <p class="text-brand-secondary col-span-full text-center">
+              Loading latest projects from GitHub...
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Articles Section -->
+      <section id="articles" class="px-4 sm:px-6 lg:px-8 pt-12 md:pt-16">
+        <div class="container mx-auto" data-aos="fade-up">
+          <h2
+            class="text-3xl sm:text-4xl font-bold text-center text-white mb-8 md:mb-12 text-glow"
+          >
+            Recent Articles
+          </h2>
+          <div
+            id="substack-posts-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <p class="text-brand-secondary col-span-full text-center">
+              Loading latest articles from Substack...
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommendations Section -->
+      <section id="recommendations" class="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="container mx-auto" data-aos="fade-up">
+          <h2 class="text-3xl sm:text-4xl font-bold text-center text-white mb-8 md:mb-12 text-glow">
+            What People Say
+          </h2>
+          <div class="relative max-w-4xl mx-auto">
+            <div id="recommendations-carousel" class="flex snap-x snap-mandatory overflow-x-auto gap-6 pb-4 cursor-grab">
+              <!-- Recommendation Card 1 -->
+              <div class="rec-card-wrapper w-full flex-shrink-0 snap-center">
+                <div class="recommendation-card p-6 flex flex-col items-center text-center">
+                  <div class="text-brand-accent mb-4 text-3xl opacity-50">
+                    <i class="fa-solid fa-quote-left"></i>
+                  </div>
+                  <p class="text-brand-secondary text-lg italic flex-grow">"Sourav is a highly motivated and dedicated individual. His commitment to learning and his natural leadership skills make him an asset to any team. He's always eager to take on new challenges and consistently delivers high-quality work."</p>
+                  <div class="mt-6 pt-4 border-t border-white/10 w-full">
+                    <p class="font-bold text-white text-lg">Md. Shakil Khan</p>
+                    <p class="text-sm text-brand-secondary/80">Mentor & Full-Stack Developer</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Recommendation Card 2 -->
+              <div class="rec-card-wrapper w-full flex-shrink-0 snap-center">
+                <div class="recommendation-card p-6 flex flex-col items-center text-center">
+                  <div class="text-brand-accent mb-4 text-3xl opacity-50">
+                    <i class="fa-solid fa-quote-left"></i>
+                  </div>
+                  <p class="text-brand-secondary text-lg italic flex-grow">"His work ethic and ability to quickly grasp new concepts are truly impressive. Sourav's enthusiasm for technology is infectious, and he contributes positively to every project he's involved in."</p>
+                  <div class="mt-6 pt-4 border-t border-white/10 w-full">
+                    <p class="font-bold text-white text-lg">Fahim Hasan</p>
+                    <p class="text-sm text-brand-secondary/80">Lead Web Developer</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Recommendation Card 3 -->
+              <div class="rec-card-wrapper w-full flex-shrink-0 snap-center">
+                <div class="recommendation-card p-6 flex flex-col items-center text-center">
+                  <div class="text-brand-accent mb-4 text-3xl opacity-50">
+                    <i class="fa-solid fa-quote-left"></i>
+                  </div>
+                  <p class="text-brand-secondary text-lg italic flex-grow">"Sourav's passion for learning and his collaborative spirit are outstanding. He is an excellent team player who is always ready to share his knowledge and support others. I highly recommend him."</p>
+                  <div class="mt-6 pt-4 border-t border-white/10 w-full">
+                    <p class="font-bold text-white text-lg">Dr. Anisur Rahman</p>
+                    <p class="text-sm text-brand-secondary/80">Professor of Computer Science</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Carousel Navigation Buttons -->
+            <button id="rec-prev-btn" class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 p-2 rec-nav-btn text-white block">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="rec-next-btn" class="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 p-2 rec-nav-btn text-white block">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="container mx-auto text-center" data-aos="fade-up">
+          <div class="max-w-2xl mx-auto">
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-center text-white mb-8 text-glow"
+            >
+              Send Me a Message
+            </h2>
+            <form
+              id="contact-form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              class="space-y-6 text-left"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="9f4ad3eb-6a2c-42a1-b06c-ec515d72da59"
+              />
+              <input
+                type="checkbox"
+                name="botcheck"
+                class="hidden"
+                style="display: none"
+              />
+              <div>
+                <label for="name" class="form-label">Full Name</label
+                ><input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  class="form-input"
+                  aria-label="Full Name"
+                />
+              </div>
+              <div>
+                <label for="email" class="form-label">Email Address</label
+                ><input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  class="form-input"
+                  aria-label="Email Address"
+                />
+              </div>
+              <input
+                type="hidden"
+                name="subject"
+                value="Message from Website"
+              />
+              <div>
+                <label for="message" class="form-label">Message</label
+                ><textarea
+                  name="message"
+                  id="message"
+                  rows="5"
+                  required
+                  class="form-textarea"
+                  aria-label="Message"
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                <span id="submit-btn-text">Send Message</span
+                ><span
+                  id="submit-btn-loader"
+                  class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+                ></span>
+              </button>
+              <div id="form-status" class="mt-4 text-center"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="border-t border-white/10 mt-8 pt-8 pb-8 px-4 sm:px-6 lg:px-8"
+      role="contentinfo"
+    >
+      <div class="container mx-auto text-center text-gray-400">
+        <div class="flex justify-center space-x-6 mb-4">
+          <a
+            href="https://www.linkedin.com/in/souravsahapartho/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn Profile"
+            class="hover:text-brand-accent transition-colors"
+            ><span class="sr-only">LinkedIn</span
+            ><svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              /></svg
+          ></a>
+          <a
+            href="https://www.instagram.com/souravsahapartho/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Instagram Profile"
+            class="hover:text-brand-accent transition-colors"
+            ><span class="sr-only">Instagram</span
+            ><svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.058 1.644-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"
+              /></svg
+          ></a>
+          <a
+            href="https://www.facebook.com/souravsahapartho/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Facebook Profile"
+            class="hover:text-brand-accent transition-colors"
+            ><span class="sr-only">Facebook</span
+            ><svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+              /></svg
+          ></a>
+          <a
+            href="https://x.com/souravpartho"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="X Profile"
+            class="hover:text-brand-accent transition-colors"
+            ><span class="sr-only">X</span
+            ><svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.617l-5.21-6.817-6.044 6.817h-3.308l7.73-8.835-7.994-10.66h6.74l4.733 6.349 5.505-6.349zm-1.102 19.33h1.72l-10.4-13.84h-1.62l10.3 13.84z"
+              /></svg
+          ></a>
+        </div>
+        <p class="text-sm text-gray-500 mt-8">
+          © 2025 Sourav Saha. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <div id="cv-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <button id="close-cv-modal" class="modal-close-btn" title="Close">
+          &times;
+        </button>
+        <div class="modal-header">
+          <h3 class="modal-title">My CV</h3>
+          <a
+            href="https://drive.google.com/uc?export=download&id=1HAuVM2tafxLJVT8rRBD5_0dJa81fgdLE"
+            class="download-btn"
+            download="Sourav_Saha_CV.pdf"
+            >Download PDF</a
+          >
+        </div>
+        <div class="iframe-container">
+          <iframe
+            src="https://drive.google.com/file/d/1HAuVM2tafxLJVT8rRBD5_0dJa81fgdLE/preview"
+            width="100%"
+            height="100%"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div id="newsletter-popup" class="newsletter-popup">
+      <button
+        id="close-newsletter-popup"
+        class="newsletter-close-btn"
+        title="Close"
+      >
+        &times;
+      </button>
+      <div class="p-6">
+        <h3 class="font-bold text-white text-lg mb-2">
+          Subscribe to my Newsletter
+        </h3>
+        <p class="text-brand-secondary text-sm mb-4">
+          Get my latest articles, projects, and insights delivered straight to
+          your inbox.
+        </p>
+        <form
+          id="newsletter-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="space-y-4"
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="9f4ad3eb-6a2c-42a1-b06c-ec515d72da59"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="New Newsletter Subscription from Portfolio"
+          />
+          <input type="hidden" name="from_name" value="Sourav Saha Portfolio" />
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            style="display: none"
+          />
+          <input
+            type="email"
+            name="email"
+            class="form-input w-full"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit" class="submit-btn w-full">Subscribe</button>
+          <div id="newsletter-status" class="mt-2 text-center text-sm"></div>
+        </form>
+      </div>
+    </div>
+
+    <button id="back-to-top-btn" title="Go to top">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 15l7-7 7 7"
+        />
+      </svg>
+    </button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // The delay before the preloader is hidden and animations start
+      const PRELOADER_DELAY = 1500;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const preloader = document.getElementById("preloader");
+        
+        if (preloader) {
+          setTimeout(() => {
+            preloader.classList.add("hidden");
+            animateHeadline();
+          }, PRELOADER_DELAY);
+        } else {
+          animateHeadline();
+        }
+
+        // --- Headline Text Animation ---
+        function animateHeadline() {
+          const headline = document.querySelector(".animated-headline");
+          if (!headline) return;
+
+          const line1 = headline.querySelector(".line-1");
+          const line2 = headline.querySelector(".line-2");
+          const line1Text = line1.textContent;
+          const line2Text = line2.textContent;
+
+          line1.innerHTML = "";
+          line2.innerHTML = "";
+
+          let delay = 0;
+          line1Text.split("").forEach((char) => {
+            const span = document.createElement("span");
+            span.className = "char";
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+            span.style.animationDelay = `${delay}s`;
+            line1.appendChild(span);
+            delay += 0.05;
+          });
+
+          delay += 0.1;
+
+          line2Text.split("").forEach((char) => {
+            const span = document.createElement("span");
+            span.className = "char";
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+            span.style.animationDelay = `${delay}s`;
+            if ("Sourav Saha".includes(char)) {
+              span.classList.add("text-brand-accent", "text-glow");
+            }
+            line2.appendChild(span);
+            delay += 0.05;
+          });
+        }
+
+        // Initialize AOS library for scroll animations
+        AOS.init({ duration: 800, once: true, startEvent: "DOMContentLoaded" });
+
+        // --- Mobile Menu Toggle Logic ---
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+          // Close mobile menu when a link is clicked
+          mobileMenu.querySelectorAll("a, button").forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.add("hidden");
+            });
+          });
+        }
+
+        // --- Header Scroll Effect ---
+        const header = document.querySelector("header");
+        if (header) {
+          window.addEventListener("scroll", () => {
+            header.classList.toggle("header-scrolled", window.scrollY > 50);
+          });
+        }
+
+        // --- Active Navigation Link Highlighting ---
+        const navLinks = document.querySelectorAll("header nav a.nav-link");
+        const sections = document.querySelectorAll("main section[id]");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            let currentActive = "";
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                currentActive = entry.target.id;
+              }
+            });
+            navLinks.forEach((link) => {
+              const href = link.getAttribute("href").substring(1);
+              link.classList.toggle("active-link", href === currentActive);
+            });
+          },
+          { root: null, rootMargin: "0px", threshold: 0.4 }
+        );
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // --- Background Particle Canvas ---
+        const canvas = document.getElementById("particle-canvas");
+        if (canvas) {
+          const ctx = canvas.getContext("2d");
+          let w = (canvas.width = window.innerWidth);
+          let h = (canvas.height = window.innerHeight);
+          let cols = Math.floor(w / 20) + 1;
+          let ypos = Array(cols).fill(0);
+          ctx.fillStyle = "#0f172a";
+          ctx.fillRect(0, 0, w, h);
+          function matrix() {
+            ctx.fillStyle = "rgba(15, 23, 42, 0.04)";
+            ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = "rgba(0, 194, 169, 0.3)";
+            ctx.font = "15pt monospace";
+            ypos.forEach((y, ind) => {
+              const text = String.fromCharCode(Math.random() * 128);
+              const x = ind * 20;
+              ctx.fillText(text, x, y);
+              if (y > 100 + Math.random() * 10000) {
+                ypos[ind] = 0;
+              } else {
+                ypos[ind] = y + 20;
+              }
+            });
+          }
+          setInterval(matrix, 60);
+          window.addEventListener("resize", () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            cols = Math.floor(w / 20) + 1;
+            ypos = Array(cols).fill(0);
+            ctx.fillStyle = "#0f172a";
+            ctx.fillRect(0, 0, w, h);
+          });
+        }
+
+        // --- Rotating Headline Subtitle ---
+        const rotatingTextContainer = document.getElementById(
+          "rotating-text-container"
+        );
+        if (rotatingTextContainer) {
+          const texts = [
+            "A Creative Tech Writer",
+            "An Aspiring Developer",
+            "A Computer Science Student",
+            "A Passionate Leader",
+          ];
+          let currentIndex = 0;
+          texts.forEach((text) => {
+            const span = document.createElement("span");
+            span.textContent = text;
+            span.classList.add("rotating-text-item");
+            rotatingTextContainer.appendChild(span);
+          });
+          const textItems = rotatingTextContainer.querySelectorAll(
+            ".rotating-text-item"
+          );
+          function rotateText() {
+            const currentItem = textItems[currentIndex];
+            currentIndex = (currentIndex + 1) % textItems.length;
+            const nextItem = textItems[currentIndex];
+            currentItem.classList.remove("is-visible");
+            currentItem.classList.add("is-hidden");
+            nextItem.classList.remove("is-hidden");
+            setTimeout(() => {
+              nextItem.classList.add("is-visible");
+            }, 50);
+          }
+          if (textItems.length > 0) {
+            setTimeout(() => {
+              textItems[0].classList.add("is-visible");
+              setInterval(rotateText, 3000);
+            }, PRELOADER_DELAY + 1500);
+          }
+        }
+
+        // --- CV Modal Logic ---
+        const cvModal = document.getElementById("cv-modal");
+        const openCvBtns = document.querySelectorAll(".open-cv-btn");
+        const closeCvBtn = document.getElementById("close-cv-modal");
+        if (cvModal && openCvBtns.length && closeCvBtn) {
+          const closeModal = () => cvModal.classList.add("hidden");
+          openCvBtns.forEach((btn) =>
+            btn.addEventListener("click", (e) => {
+              e.preventDefault();
+              cvModal.classList.remove("hidden");
+            })
+          );
+          closeCvBtn.addEventListener("click", closeModal);
+          cvModal.addEventListener("click", (e) => {
+            if (e.target === cvModal) closeModal();
+          });
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !cvModal.classList.contains("hidden"))
+              closeModal();
+          });
+        }
+
+        // --- Web3Forms Form Submission Logic ---
+        function handleFormSubmit(formId, statusId, btnTextId, btnLoaderId) {
+          const form = document.getElementById(formId);
+          if (!form) return;
+          const statusDiv = document.getElementById(statusId);
+          const submitBtnText = btnTextId
+            ? document.getElementById(btnTextId)
+            : null;
+          const submitBtnLoader = btnLoaderId
+            ? document.getElementById(btnLoaderId)
+            : null;
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData.entries());
+            const json = JSON.stringify(object);
+
+            if (submitBtnText && submitBtnLoader) {
+              submitBtnText.classList.add("hidden");
+              submitBtnLoader.classList.remove("hidden");
+            } else {
+              statusDiv.innerHTML = "Submitting...";
+            }
+
+            fetch(form.action, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: json,
+            })
+              .then(async (response) => {
+                let jsonResponse = await response.json();
+                if (response.ok) {
+                  statusDiv.innerHTML = `<span style="color: #00c2a9;">${jsonResponse.message}</span>`;
+                  form.reset();
+                } else {
+                  throw new Error(jsonResponse.message || "Something went wrong.");
+                }
+              })
+              .catch((error) => {
+                console.error("Submission error:", error);
+                statusDiv.innerHTML = `<span style="color: #ef4444;">${error.message}</span>`;
+              })
+              .finally(() => {
+                if (submitBtnText && submitBtnLoader) {
+                  submitBtnText.classList.remove("hidden");
+                  submitBtnLoader.classList.add("hidden");
+                }
+                setTimeout(() => {
+                  statusDiv.innerHTML = "";
+                  if (formId === "newsletter-form") {
+                    document
+                      .getElementById("newsletter-popup")
+                      ?.classList.remove("is-visible");
+                  }
+                }, 5000);
+              });
+          });
+        }
+        handleFormSubmit(
+          "contact-form",
+          "form-status",
+          "submit-btn-text",
+          "submit-btn-loader"
+        );
+        handleFormSubmit("newsletter-form", "newsletter-status");
+
+        // --- Newsletter Popup & Back-to-Top Button Logic ---
+        const newsletterPopup = document.getElementById("newsletter-popup");
+        const closeNewsletterBtn = document.getElementById(
+          "close-newsletter-popup"
+        );
+        const backToTopBtn = document.getElementById("back-to-top-btn");
+        let isPopupBlocked =
+          localStorage.getItem("newsletterPopupClosedAt") &&
+          new Date().getTime() -
+            parseInt(localStorage.getItem("newsletterPopupClosedAt")) <
+            24 * 60 * 60 * 1000;
+
+        if (closeNewsletterBtn) {
+          closeNewsletterBtn.addEventListener("click", () => {
+            newsletterPopup.classList.remove("is-visible");
+            localStorage.setItem(
+              "newsletterPopupClosedAt",
+              new Date().getTime().toString()
+            );
+            isPopupBlocked = true;
+          });
+        }
+        if (backToTopBtn) {
+          backToTopBtn.addEventListener("click", () =>
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          );
+        }
+        window.addEventListener(
+          "scroll",
+          () => {
+            const scrollPercentage =
+              (window.scrollY /
+                (document.documentElement.scrollHeight - window.innerHeight)) *
+              100;
+            // Show button after 50% scroll
+            if (backToTopBtn)
+              backToTopBtn.classList.toggle("visible", scrollPercentage >= 50);
+            if (newsletterPopup && !isPopupBlocked && scrollPercentage >= 90) {
+              newsletterPopup.classList.add("is-visible");
+            }
+          },
+          { passive: true }
+        );
+
+        // --- Skill Progress Bar Animation ---
+        const skillsSection = document.getElementById("skills");
+        if (skillsSection) {
+          new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target
+                    .querySelectorAll(".progress-bar")
+                    .forEach((bar) => bar.classList.add("animated"));
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          ).observe(skillsSection);
+        }
+
+        // --- Recommendations Carousel Logic with CSS Scroll Snap ---
+        const recCarousel = document.getElementById("recommendations-carousel");
+        const recCards = recCarousel ? recCarousel.querySelectorAll(".rec-card-wrapper") : [];
+        const recPrevBtn = document.getElementById("rec-prev-btn");
+        const recNextBtn = document.getElementById("rec-next-btn");
+
+        if (recCarousel && recCards.length > 0) {
+          let recInterval;
+          let currentRecIndex = 0;
+          const totalCards = recCards.length;
+          
+          function scrollToCard(index) {
+            // Calculate the correct index, wrapping around
+            currentRecIndex = (index % totalCards + totalCards) % totalCards;
+            
+            const cardElement = recCards[currentRecIndex];
+            if (cardElement) {
+              recCarousel.scrollTo({ left: cardElement.offsetLeft, behavior: 'smooth' });
+            }
+          }
+          
+          // Handle navigation buttons
+          if (recPrevBtn) {
+            recPrevBtn.addEventListener("click", () => {
+              scrollToCard(currentRecIndex - 1);
+              resetInterval();
+            });
+          }
+
+          if (recNextBtn) {
+            recNextBtn.addEventListener("click", () => {
+              scrollToCard(currentRecIndex + 1);
+              resetInterval();
+            });
+          }
+          
+          // Auto-play functionality
+          function startInterval() {
+            recInterval = setInterval(() => {
+              scrollToCard(currentRecIndex + 1);
+            }, 5000); // Change card every 5 seconds
+          }
+
+          function resetInterval() {
+            clearInterval(recInterval);
+            startInterval();
+          }
+
+          // Listen for manual scroll to update the current index
+          recCarousel.addEventListener('scroll', () => {
+            const cardWidthWithGap = recCards[0].offsetWidth + 24; // Width + gap
+            const newIndex = Math.round(recCarousel.scrollLeft / cardWidthWithGap);
+            // Only update if the index has genuinely changed to avoid flickering
+            if (newIndex !== currentRecIndex) {
+              currentRecIndex = newIndex;
+            }
+          });
+
+          // Start the auto-play and pause on hover
+          startInterval();
+          recCarousel.addEventListener('mouseenter', () => clearInterval(recInterval));
+          recCarousel.addEventListener('mouseleave', () => startInterval());
+        }
+        
+        // --- Fetch Dynamic Content from APIs ---
+        fetchSubstackPosts();
+        fetchGithubRepos();
+      });
+
+      // Fetch the latest articles from Substack RSS feed
+      async function fetchSubstackPosts() {
+        const substackUrl = "techtalkwithsourav.substack.com";
+        const postsGrid = document.getElementById("substack-posts-grid");
+        if (!postsGrid) return;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
+          `https://${substackUrl}/feed`
+        )}&_=${new Date().getTime()}`;
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error(`API error: ${response.status}`);
+          const data = await response.json();
+          if (data.status !== "ok" || !data.items || data.items.length === 0) {
+            postsGrid.innerHTML =
+              '<p class="text-brand-secondary col-span-full text-center">Could not find any articles.</p>';
+            return;
+          }
+          postsGrid.innerHTML = "";
+          data.items.slice(0, 3).forEach((item) => {
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = item.description;
+
+            let imageUrl = "";
+            // 1. Prioritize thumbnail
+            if (
+              item.thumbnail &&
+              typeof item.thumbnail === "string" &&
+              item.thumbnail.length > 0
+            ) {
+              imageUrl = item.thumbnail;
+              // 2. Fallback to enclosure
+            } else if (
+              item.enclosure &&
+              item.enclosure.link &&
+              typeof item.enclosure.link === "string" &&
+              item.enclosure.link.length > 0
+            ) {
+              imageUrl = item.enclosure.link;
+              // 3. Fallback to parsing description
+            } else {
+              const firstImg = tempDiv.querySelector("img");
+              if (firstImg && firstImg.src) {
+                imageUrl = firstImg.src;
+              }
+            }
+
+            const imageElement = `<img src="${
+              imageUrl ||
+              "https://placehold.co/400x180/1e293b/334155?text=Article+Image"
+            }" alt="${
+              item.title
+            }" class="article-card-thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/400x180/1e293b/334155?text=Image+Error';">`;
+
+            const snippet =
+              tempDiv.textContent.trim().substring(0, 120) + "...";
+            const formattedDate = new Date(item.pubDate).toLocaleDateString(
+              "en-US",
+              { year: "numeric", month: "long", day: "numeric" }
+            );
+
+            const articleCard = `
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="article-card rounded-lg flex flex-col h-full">
+                ${imageElement}
+                <div class="article-card-content">
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-white text-glow mb-2">${item.title}</h3>
+                    <p class="text-brand-secondary/80 text-sm mb-4">${snippet}</p>
+                  </div>
+                  <p class="text-xs text-brand-secondary/60 mt-4">${formattedDate}</p>
+                </div>
+              </a>`;
+            postsGrid.innerHTML += articleCard;
+          });
+        } catch (error) {
+          postsGrid.innerHTML = `<p class="text-red-400 col-span-full text-center">Failed to load articles. Please check the Substack URL.</p>`;
+          console.error("Substack Fetch Error:", error);
+        }
+      }
+
+      // Fetch the latest repositories from GitHub API
+      async function fetchGithubRepos() {
+        const username = "souravsahapartho";
+        const repoGrid = document.getElementById("github-repos-grid");
+        if (!repoGrid) return;
+        const url = `https://api.github.com/users/${username}/repos?sort=pushed&per_page=6`;
+        try {
+          const response = await fetch(url);
+          if (!response.ok)
+            throw new Error(`GitHub API error: ${response.status}`);
+          const repos = await response.json();
+          repoGrid.innerHTML = "";
+          if (repos.length === 0) {
+            repoGrid.innerHTML =
+              '<p class="text-brand-secondary col-span-full text-center">No public repositories found.</p>';
+            return;
+          }
+          repos.forEach((repo) => {
+            const repoCard = `
+              <a href="${
+                repo.html_url
+              }" target="_blank" rel="noopener noreferrer" class="repo-card p-6 rounded-lg flex flex-col h-full">
+                <div class="flex-grow"><h3 class="text-xl font-bold text-white text-glow mb-2">${
+                  repo.name
+                }</h3><p class="text-brand-secondary text-sm mb-4">${
+              repo.description || "No description provided."
+            }</p></div>
+                <div class="flex items-center text-sm text-brand-secondary/80 mt-auto">
+                  ${
+                    repo.language
+                      ? `<span class="flex items-center mr-4"><span class="w-3 h-3 rounded-full mr-2 bg-brand-accent"></span>${repo.language}</span>`
+                      : ""
+                  }
+                  <span class="flex items-center mr-4"><svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 16 16"><path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/></svg>${
+                  repo.stargazers_count
+                }</span>
+                  <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm0 2.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm0 2.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm0 2.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zM11 5.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm0 2.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm0 2.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0z"/></svg>${
+                  repo.forks_count
+                }</span>
+                </div>
+              </a>
+            `;
+            repoGrid.innerHTML += repoCard;
+          });
+        } catch (error) {
+          repoGrid.innerHTML = `<p class="text-red-400 col-span-full text-center">Failed to load projects from GitHub. Please try again later.</p>`;
+          console.error("GitHub API Error:", error);
+        }
+      }
+    </script>
+  </body>
+</html>
