@@ -1,0 +1,57 @@
+You are asked to create and manage a simple library database by writing SQL statements to perform the following tasks:
+
+Part A — Table Creation & Data Insertion
+
+Create a table named library_books with the following attributes:
+
+book_id (VARCHAR(20), Primary Key)
+
+book_title (VARCHAR(40), NOT NULL)
+
+author (VARCHAR(30))
+
+price (INT)
+
+Create another table named members with the following attributes:
+
+member_id (INT, Primary Key)
+
+member_name (VARCHAR(30))
+
+membership_type (VARCHAR(20))
+
+borrowed_book (VARCHAR(20)) which references book_id of library_books table.
+
+Insert the following records into library_books:
+
+('B101', 'Database Systems', 'Navathe', 500)
+
+('B102', 'Clean Code', 'Robert Martin', 700)
+
+('B103', 'Algorithms', 'CLRS', 900)
+
+Insert the following records into members:
+
+(1, 'Rahim', 'Regular', 'B101')
+
+(2, 'Karim', 'Premium', 'B103')
+
+Part B — Table Modification
+
+Add a new column email (VARCHAR(40)) to the members table.
+
+Add two new columns to library_books:
+
+published_year (INT)
+
+category (VARCHAR(20))
+
+Modify the data type of the price column in library_books to FLOAT(6,2).
+
+Delete the membership_type column from the members table.
+
+Rename the column member_name in the members table to full_name.
+
+Rename the table library_books to books_archive.
+
+Finally, delete the entire members table.

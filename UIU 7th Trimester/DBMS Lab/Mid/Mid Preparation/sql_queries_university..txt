@@ -1,0 +1,299 @@
+1.
+select dept_name
+from department;
+
+
+2.
+select name
+from instructor;
+
+
+3.
+select title
+from course
+where dept_name='Biology'
+
+
+4.
+select capacity
+from classroom
+where building='Watson';
+
+
+5.
+select name
+from student
+where dept_name='Comp. Sci.'
+
+
+6.
+select title
+from course
+where credits>3
+
+
+7.
+select name, salary
+from instructor
+where salary>70000
+
+
+8.
+select sec_id
+from section
+where semester='Fall' AND year=2017;
+
+
+9.
+select name
+from student
+where tot_cred>50
+
+
+10.
+select course_id,prereq_id
+from prereq
+
+
+11.
+select room_number
+from classroom
+where building='Taylor'
+
+
+12.
+select name, dept_name
+from instructor
+
+
+13.
+select name
+from student
+where tot_cred=0
+
+
+14.
+select sec_id
+from section
+where building='Packard'
+
+
+15.
+select t.course_id
+from teaches t
+Join instructor i
+ON t.ID=i.ID
+where i.name='Srinivasan'
+
+
+
+17.
+SELECT i.name
+From instructor i
+JOIN advisor a
+ON i.ID=a.i_id
+WHERE a.s_id=12345;
+
+
+18.
+SELECT distinct dept_name
+FROM department
+where building='Taylor'
+
+
+19.
+SELECT s.name, i.name
+FROM student s
+JOIN advisor a
+ON a.s_id=s.id
+JOIN instructor i
+ON a.i_id=i.ID
+
+
+21.
+SELECT s.name
+FROM student s
+JOIN takes t
+ON s.ID=t.ID
+WHERE t.course_id='CS-101' AND t.semester='FALL' AND t.year=2009;
+
+
+22.
+SELECT c.title
+FROM course c
+JOIN teaches t
+ON c.course_id=t.course_id
+JOIN instructor i
+ON t.ID=i.ID
+WHERE i.name='Crick';
+
+
+23.
+SELECT sum(budget)
+FROM department
+where building='Taylor'
+
+
+24.
+SELECT dept_name, avg(salary)
+FROM instructor
+GROUP by dept_name;
+
+
+25.
+SELECT stu.name
+FROM student stu
+JOIN takes t
+ON stu.ID=t.ID
+JOIN section sec
+ON t.course_id=sec.course_id
+WHERE sec.semester='SPRING' AND sec.year=2010 AND sec.building='WATSON'
+
+
+26.
+SELECT course_id
+FROM prereq
+GROUP BY course_id
+HAVING count(prereq_id)>1;
+
+
+27.
+SELECT dept_name
+FROM department
+WHERE budget<75000;
+
+
+29.
+SELECT i.name
+FROM instructor i
+JOIN teaches t
+ON i.ID=t.ID
+JOIN section s
+ON t.course_id=s.course_id
+WHERE s.building='Taylor'
+
+
+30.
+SELECT name, max(tot_cred)
+FROM student
+
+
+31.
+select i.name, i.ID
+FROM instructor i
+JOIN teaches t
+ON t.ID=i.ID
+group  by t.id
+order by count(t.course_id) DESC
+limit 1;
+
+
+32.
+SELECT course_id
+FROM course
+WHERE course_id NOT IN(
+	SELECT DISTINCT course_id
+	FROM takes);
+
+
+33.
+SELECT distinct s.name, s.id
+FROM student s
+JOIN takes t
+ON s.ID=t.ID
+WHERE t.grade='F';
+
+
+34.
+SELECT building
+FROM classroom
+GROUP BY building
+ORDER BY SUM(capacity) DESC
+LIMIT 1;
+
+
+35.
+SELECT s.ID,s.name
+FROM student s
+JOIN advisor a
+ON s.ID=a.s_id
+JOIN instructor i
+ON a.i_id=i.ID
+WHERE i.name='Einstein';
+
+
+36.
+SELECT c.title,c.course_id
+FROM course c
+JOIN takes t
+ON c.course_id=t.course_id
+JOIN student s
+ON s.ID=t.ID
+WHERE s.name='Zhang';
+
+
+37.
+
+
+38.
+select name
+from instructor
+where id not IN (
+	select distinct id
+    from teaches
+    )
+
+
+39.
+select p.course_id
+from prereq p
+join course c1
+on p.course_id=c1.course_id
+join course c2
+on p.prereq_id=c2.course_id
+where c1.dept_name<>c2.dept_name
+
+
+40.
+select dept_name
+from department
+where dept_name not in(
+	select distinct dept_name 
+    from student)
+
+
+
+41.
+select s.name, s.ID
+from student s
+join takes t
+on s.ID = t.ID
+join course c
+on t.course_id = c.course_id
+join teaches tc
+on c.course_id = tc.course_id
+join instructor i
+on tc.ID = i.ID
+where i.name = 'Srinivasan'
+group by s.name,s.ID
+having count(distinct t.course_id) = (
+		select count(c.course_id)
+        from course c
+        join teaches tc
+        on c.course_id = tc.course_id
+        join instructor i 
+        on tc.ID = i.ID
+        where i.name = 'Srinivasan'
+        );
+
+
+42.
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,247 @@
+List all departments
+SELECT * FROM department;
+
+2. Find the names of all instructors
+SELECT name FROM instructor;
+
+3. Retrieve all courses from the Biology department
+SELECT * FROM course
+WHERE dept_name = 'Biology';
+
+4. Show the capacity of the 'Watson' building
+SELECT capacity FROM classroom
+WHERE building = 'Watson';
+
+5. List all students in the 'Comp. Sci.' department
+SELECT * FROM student
+WHERE dept_name = 'Comp. Sci.';
+
+6. Find all courses with credits greater than 3
+SELECT * FROM course
+WHERE credits > 3;
+
+7. Retrieve the names and salaries of instructors earning more than 70,000
+SELECT name, salary FROM instructor
+WHERE salary > 70000;
+
+8. Display all sections offered in the 'Fall' semester of 2017
+SELECT * FROM section
+WHERE semester = 'Fall' AND year = 2017;
+
+9. Find the names of students who have earned more than 50 total credits
+SELECT name FROM student
+WHERE tot_cred > 50;
+
+10. List all courses along with their prerequisites
+SELECT course_id, prereq_id FROM prereq;
+
+11. Display the room numbers in the 'Taylor' building
+SELECT room_number FROM classroom
+WHERE building = 'Taylor';
+
+12. Retrieve the name and department of all instructors
+SELECT name, dept_name FROM instructor;
+
+13. Find all students with a total credit of 0
+SELECT * FROM student
+WHERE tot_cred = 0;
+
+14. Show all sections that take place in the 'Packard' building
+SELECT * FROM section
+WHERE building = 'Packard';
+
+15. List all courses taught by 'Srinivasan'
+SELECT DISTINCT t.course_id
+FROM teaches t
+JOIN instructor i ON t.ID = i.ID
+WHERE i.name = 'Srinivasan';
+
+16. Retrieve all time slots that start at or after 10 AM
+SELECT * FROM time_slot
+WHERE start_time >= '10:00';
+
+17. Find all advisors for student '12345'
+SELECT i.name
+FROM advisor a
+JOIN instructor i ON a.i_id = i.ID
+WHERE a.s_id = '12345';
+
+18. List all departments located in the 'Taylor' building
+SELECT dept_name FROM department
+WHERE building = 'Taylor';
+
+19. Show all students along with their assigned advisors
+SELECT s.name, i.name
+FROM student s
+LEFT JOIN advisor a ON s.ID = a.s_id
+LEFT JOIN instructor i ON a.i_id = i.ID;
+
+20. Retrieve the budget of the 'Finance' department
+SELECT budget FROM department
+WHERE dept_name = 'Finance';
+
+21. Find students who took 'CS-101' in 'Fall 2017'
+SELECT s.name
+FROM student s
+JOIN takes t ON s.ID = t.ID
+WHERE t.course_id = 'CS-101'
+AND t.semester = 'Fall'
+AND t.year = 2017;
+
+22. List the titles of courses taught by 'Crick'
+SELECT DISTINCT c.title
+FROM course c
+JOIN teaches t ON c.course_id = t.course_id
+JOIN instructor i ON t.ID = i.ID
+WHERE i.name = 'Crick';
+
+23. Total budget for departments in the 'Taylor' building
+SELECT SUM(budget)
+FROM department
+WHERE building = 'Taylor';
+
+24. Average salary of instructors in each department
+SELECT dept_name, AVG(salary)
+FROM instructor
+GROUP BY dept_name;
+
+25. Students taking 'Spring 2018' courses in the 'Watson' building
+SELECT DISTINCT s.name
+FROM student s
+JOIN takes t ON s.ID = t.ID
+JOIN section sec ON t.course_id = sec.course_id
+WHERE sec.semester = 'Spring'
+AND sec.year = 2018
+AND sec.building = 'Watson';
+
+26. Courses with more than one prerequisite
+SELECT course_id
+FROM prereq
+GROUP BY course_id
+HAVING COUNT(prereq_id) > 1;
+
+27. Departments with a budget less than 75,000
+SELECT dept_name FROM department
+WHERE budget < 75000;
+
+28. Time slots that span more than one hour
+SELECT * FROM time_slot
+WHERE end_time > start_time + INTERVAL '1' HOUR;
+
+29. Instructors who have taught in the 'Taylor' building
+SELECT DISTINCT i.name
+FROM instructor i
+JOIN teaches t ON i.ID = t.ID
+JOIN section s ON t.course_id = s.course_id
+WHERE s.building = 'Taylor';
+
+30. Highest total credits among students
+SELECT MAX(tot_cred) FROM student;
+
+31. Instructor teaching the most courses
+SELECT ID
+FROM teaches
+GROUP BY ID
+HAVING COUNT(course_id) = (
+    SELECT MAX(COUNT(course_id))
+    FROM teaches
+    GROUP BY ID
+);
+
+32. Courses with no students enrolled
+SELECT course_id
+FROM course
+WHERE course_id NOT IN (SELECT course_id FROM takes);
+
+33. Students who failed at least one course
+SELECT DISTINCT s.name
+FROM student s
+JOIN takes t ON s.ID = t.ID
+WHERE t.grade = 'F';
+
+34. Building with the largest total classroom capacity
+SELECT building
+FROM classroom
+GROUP BY building
+ORDER BY SUM(capacity) DESC
+FETCH FIRST 1 ROW ONLY;
+
+35. Students advised by 'Einstein'
+SELECT s.name
+FROM student s
+JOIN advisor a ON s.ID = a.s_id
+JOIN instructor i ON a.i_id = i.ID
+WHERE i.name = 'Einstein';
+
+36. Courses taken by 'Zhang'
+SELECT c.title
+FROM course c
+JOIN takes t ON c.course_id = t.course_id
+JOIN student s ON t.ID = s.ID
+WHERE s.name = 'Zhang';
+
+37. Students who completed all Comp. Sci. courses
+SELECT s.name
+FROM student s
+WHERE NOT EXISTS (
+    SELECT c.course_id
+    FROM course c
+    WHERE c.dept_name = 'Comp. Sci.'
+    AND c.course_id NOT IN (
+        SELECT t.course_id
+        FROM takes t
+        WHERE t.ID = s.ID
+    )
+);
+
+38. Instructors who never taught a course
+SELECT name FROM instructor
+WHERE ID NOT IN (SELECT ID FROM teaches);
+
+39. Courses with prerequisites from a different department
+SELECT DISTINCT p.course_id
+FROM prereq p
+JOIN course c1 ON p.course_id = c1.course_id
+JOIN course c2 ON p.prereq_id = c2.course_id
+WHERE c1.dept_name <> c2.dept_name;
+
+40. Departments where no students are enrolled
+SELECT dept_name
+FROM department
+WHERE dept_name NOT IN (SELECT dept_name FROM student);
+
+41. Students taking all courses taught by 'Srinivasan'
+SELECT s.name
+FROM student s
+WHERE NOT EXISTS (
+    SELECT t.course_id
+    FROM teaches t
+    JOIN instructor i ON t.ID = i.ID
+    WHERE i.name = 'Srinivasan'
+    AND t.course_id NOT IN (
+        SELECT course_id FROM takes WHERE ID = s.ID
+    )
+);
+
+42. Student with the highest GPA
+SELECT s.name
+FROM student s
+JOIN takes t ON s.ID = t.ID
+GROUP BY s.ID, s.name
+ORDER BY AVG(
+    CASE grade
+        WHEN 'A' THEN 4
+        WHEN 'B' THEN 3
+        WHEN 'C' THEN 2
+        WHEN 'D' THEN 1
+        ELSE 0
+    END
+) DESC
+FETCH FIRST 1 ROW ONLY;
+
+43. Courses with overlapping time slots
+SELECT DISTINCT s1.course_id
+FROM section s1
+JOIN section s2
+ON s1.time_slot_id = s2.time_slot_id
+AND s1.course_id <> s2.course_id;

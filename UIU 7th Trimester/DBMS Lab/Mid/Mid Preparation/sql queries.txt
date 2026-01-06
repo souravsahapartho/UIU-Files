@@ -1,0 +1,89 @@
+1. List all departments.
+   
+2. Find the names of all instructors.
+   
+3. Retrieve all courses from the Biology department.
+   
+4. Show the capacity of the 'Watson' building.
+   
+5. List all students in the 'Comp. Sci.' department.
+   
+6. Find all courses with credits greater than 3.
+   
+7. Retrieve the names and salaries of instructors earning more than 70,000.
+   
+8. Display all sections offered in the 'Fall' semester of 2017.
+   
+9. Find the names of students who have earned more than 50 total credits.
+   
+10. List all courses along with their prerequisites.
+    
+11. Display the room numbers in the 'Taylor' building.
+    
+12. Retrieve the name and department of all instructors.
+    
+13. Find all students with a total credit of 0.
+    
+14. Show all sections that take place in the 'Packard' building.
+    
+15. List all courses taught by 'Srinivasan'.
+    
+16. Retrieve all time slots that start at or after 10 AM.
+    
+17. Find all advisors for student '12345'.
+    
+18. List all departments located in the 'Taylor' building.
+    
+19. Show all students along with their assigned advisors.
+    
+20. Retrieve the budget of the 'Finance' department.
+    
+
+
+21. Find the names of students who took 'CS-101' in 'Fall 2017'.
+    
+22. List the titles of courses taught by 'Crick'.
+    
+23. Retrieve the total budget for all departments in the 'Taylor' building.
+    
+24. Find the average salary of instructors in each department.
+    
+25. Show all students who are taking 'Spring 2018' courses in the 'Watson' building.
+    
+26. List all courses that have more than one prerequisite.
+    
+27. Find the departments with a budget less than 75,000.
+    
+28. Retrieve all time slots that span more than an hour.
+    
+29. Display the names of instructors who have taught in the 'Taylor' building.
+    
+30. Show the highest total credits among all students.
+    
+31. Find the instructor teaching the most courses.
+    
+32. List the courses that no students are enrolled in.
+    
+33. Retrieve the names of students who failed at least one course.
+    
+34. Find the building with the largest total classroom capacity.
+    
+35. List the names of students advised by 'Einstein'.
+    
+36. Display the titles of courses taken by 'Zhang'.
+    
+37. Show the names of students who have completed all courses in the 'Comp. Sci.' department.
+    
+38. Retrieve all instructors who have never taught a course.
+    
+39. Find all courses that have prerequisites from a different department.
+    
+40. List all departments where no students are enrolled.
+    
+
+41. Find students who are taking all courses taught by 'Srinivasan'.
+    
+42. Retrieve the name of the student with the highest GPA (assume grades map to points: A=4, B=3, etc.).
+    
+43. List the courses with overlapping time slots.
+    

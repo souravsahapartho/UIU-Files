@@ -1,0 +1,57 @@
+You are required to design and manipulate two relational database tables for a university course management system. Follow the steps below:
+
+Part A — Table Creation & Insertion
+
+Create a table named course with the following attributes:
+
+course_code (VARCHAR(20), Primary Key)
+
+course_name (VARCHAR(20), Not Null)
+
+credit (INT)
+
+Create another table named student with the following attributes:
+
+id (INT, Primary Key)
+
+name (VARCHAR(30))
+
+age (INT)
+
+course_taken (VARCHAR(20)) which must reference the course_code column of the course table.
+
+Insert the following rows into the course table:
+
+('CSE 101', 'SPL', 3)
+
+('CSE 102', 'SPL Lab', 1)
+
+('CSE 103', 'OOP', 3)
+
+('CSE 104', 'OOP Lab', 1)
+
+Insert the following rows into the student table:
+
+(1, 'ABC', 19, 'CSE 101')
+
+(2, 'XYZ', 24, 'CSE 104')
+
+Part B — Table Modification
+
+Add a new column Email (VARCHAR(20)) to the student table.
+
+Add two more columns to the student table:
+
+CGPA (FLOAT(3,2))
+
+Hobby (VARCHAR(20))
+
+Modify the data type of the credit column in the course table to FLOAT(2,1).
+
+Remove the Hobby column from the student table.
+
+Rename the name column in the student table to fullname (VARCHAR(20)).
+
+Rename the course table to university_courses.
+
+Finally, delete the student table completely.
