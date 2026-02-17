@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <style>
+        table, th, td {
+            border: 1px solid cyan;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tasks</h1>
+    <table>
+        <tr>
+            <th>ID</th><th>Name</th><th>Due time</th><th>Status</th>
+        </tr>
+        <% tasks.forEach(task => { %>
+        <tr>
+            <td><%= task.id %></td>
+            <td><%= task.task_name %></td>
+            <td><%= task.due_time %></td>
+            <td><%= task.status %></td>
+        </tr>
+        <% }) %>
+    </table>
+
+    <h1>Add a new task</h1>
+    <form action="/add" method="POST">
+        <label>Task name:</label><br>
+        <input type="text" name="name" required><br>
+        <label>Due date:</label><br>
+        <input type="text" name="due" required><br><br>
+        <input type="submit" value="Add">
+    </form>
+
+    <h1>Remove a task</h1>
+    <form action="/remove" method="POST">
+        <label>Task ID:</label><br>
+        <input type="text" name="id" required><br><br>
+        <input type="submit" value="Remove">
+    </form>
+</body>
+</html>
