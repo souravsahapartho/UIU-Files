@@ -1,0 +1,107 @@
+.nav1 {
+  display: flex;
+  justify-content: space-between;
+  background-color: aqua;
+ padding: 0px 10px;
+}
+
+.ulleft {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ulright {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftbody {
+  background-color: blanchedalmond;
+  width: 35%;
+  padding: 10px 15px 10px 10px;
+  border-radius: 8px;
+}
+
+.mainbody {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spring {
+  background-color: azure;
+  width: 100%;
+  padding: 8px 0px 8px 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.notice {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rightbody {
+  width: 65%;
+  background-color: grey;
+  padding-bottom: 10px;
+}
+
+.viewbtn {
+  padding: 10px;
+  background-color: yellow;
+  border: none;
+  border-radius: 10px;
+}
+
+.blue {
+  color: blue;
+}
+
+.table1 {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  background-color: chocolate;
+  text-align: left;
+}
+
+.wh {
+  color: white;
+}
+
+.sign-up{
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.formbox{
+    padding: 3px;
+    width: 100%;
+}
+
+.register{
+      padding: 10px;
+  background-color: yellow;
+  border: none;
+  border-radius: 10px;
+}
+
+.courseregi{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.footer1{
+    background-color: rgb(198, 255, 196);
+    text-align: center;
+    padding: 5px 0px 5px 0px;
+}

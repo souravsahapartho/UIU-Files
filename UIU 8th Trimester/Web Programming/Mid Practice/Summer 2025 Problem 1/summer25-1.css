@@ -1,0 +1,63 @@
+.leftbody {
+  background-color: aqua;
+  width: 25%;
+  padding-bottom: 20px;
+}
+
+.dash1 {
+  background-color: navy;
+  padding: 10px;
+  color: white;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+}
+.dashall {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hub {
+  background-color: blueviolet;
+  padding: 10px;
+}
+
+.rightbody {
+  padding: 10px;
+  background-color: grey;
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search {
+  background-color: white;
+  padding: 5px 14px 5px 5px;
+  border-radius: 20px;
+}
+
+.coursegrid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+}
+
+.course-card {
+  border-radius: 10px;
+  overflow: hidden; /* important */
+}
+
+.coursetop {
+  background-color: green;
+  padding: 10px;
+}
+
+.coursedown {
+  background-color: orange;
+  padding: 10px;
+}

@@ -1,0 +1,124 @@
+.body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px 0px 10px;
+}
+
+.nav-btn {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: black;
+  opacity: 0.6;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.blue {
+  color: #2c3466;
+}
+
+.inbody {
+  background-color: #eceff4;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px 8px 10px;
+}
+
+.bodyleft {
+  background-color: #eff6fe;
+  width: 65%;
+  padding: 20px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.bodyright {
+  text-align: center;
+  padding: 20px;
+  width: 35%;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: white;
+}
+
+.launch {
+  font-size: xx-large;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ultimate {
+  font-size: larger;
+}
+
+.join {
+  font-size: medium;
+  text-align: justify;
+}
+
+.learn-btn {
+  background-color: #50ad50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  font-size: large;
+  margin-right: 10px;
+}
+
+.watch-btn {
+  border-color: #3546a4;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: large;
+}
+
+.green {
+  color: #50ad50;
+}
+
+.form {
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.6;
+}
+
+
+.account {
+  background-color: #3546a4;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  padding: 10px 0px;
+  font-size: large;
+}
+
+.start {
+  font-size: large;
+  font-weight: bold;
+}
+
+.bold{
+    font-weight: bold;
+    font-size: small;
+}
+
+.formbox{
+    width: 100%;
+
+}
+
+.already{
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+}
