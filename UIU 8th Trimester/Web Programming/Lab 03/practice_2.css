@@ -1,0 +1,42 @@
+.main-body{
+background-color: teal;
+height: 100vh;
+display: grid;
+grid-template-columns: auto auto auto auto;
+grid-template-rows: auto auto auto;
+gap: 10px;
+padding: 5px;
+}
+
+.child{
+background-color: whitesmoke;
+border: solid 2px black;
+padding: 20px;
+font-weight: bold;
+}
+
+
+.child-1{
+  grid-row: span 3;
+}
+
+.child-6{
+  grid-row: span 2;
+}
+
+.child-2{
+  grid-column: span 2;
+}
+
+
+.yellow{
+  background-color: yellow;
+}
+
+.red{
+  background-color: red;
+}
+
+.green{
+  background-color: green;
+}

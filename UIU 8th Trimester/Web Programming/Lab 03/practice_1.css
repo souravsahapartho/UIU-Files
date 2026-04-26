@@ -1,0 +1,25 @@
+.main-child{
+background-color: aquamarine;
+height: 50vh;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 5px;
+padding: 5px;
+
+}
+
+.box{
+  border: 1px solid red;
+  background-color: antiquewhite;
+align-content: center;
+font-size: larger;
+font-weight: bold;
+padding: 30px;
+width: 20%;
+height: 30px;
+box-shadow: 5px 5px 5px 0px;
+border-radius: 10px;
+}
+
