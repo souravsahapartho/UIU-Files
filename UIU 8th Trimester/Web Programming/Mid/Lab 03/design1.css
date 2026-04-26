@@ -1,0 +1,30 @@
+.main-container{
+    height: 50vh;
+    background-color: aquamarine;
+    display: flex;
+    
+    gap: 5px;
+    padding: 5px;
+    flex-wrap: wrap;
+
+    /* set the horizontal alignment of the childs */
+    justify-content: center;
+    /* set the vertical alignment of the childs */
+    align-items: center;
+}
+.child{
+    padding: 30px;
+    background-color: antiquewhite;
+    width: 20%;
+    height: 30px;
+    border-radius: 8px;
+    /* margin: 5px; */
+    /* border: width | type | color */
+    border: 1px solid red;
+    /* box-shadow: x-axis shift | y axis shift | blur */
+    box-shadow: 5px 5px 5px;
+    
+
+
+    
+}

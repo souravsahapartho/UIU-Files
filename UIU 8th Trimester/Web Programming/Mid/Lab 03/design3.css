@@ -1,0 +1,35 @@
+.header-footer{
+    height: 10vh;
+    background-color: rgb(143, 185, 26);
+}
+
+.main-body{
+    height: 80vh;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto auto;
+    gap:5px;
+    /* padding: top right bottom left */
+    padding: 5px 100px 5px 100px;
+
+}
+
+.child{
+    background-color: rgb(128, 47, 0);
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+    padding-top: 100px;
+
+}
+
+.column4{
+    grid-column: span 4;
+}
+.column2{
+    grid-column: span 2;
+}
+.column3{
+    grid-column: span 3;
+}

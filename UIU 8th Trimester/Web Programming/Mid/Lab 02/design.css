@@ -1,0 +1,94 @@
+.header{
+    /* 10% of the vertical height */
+    height: 10vh; 
+    /* background-color: aqua; */
+    /* border: border-width | border-style | border-color */
+    /* border: top, bottom, left, right */
+    border-bottom: 1px solid grey;
+    
+}
+
+.flex{
+    display: flex;
+}
+
+.main-body{
+    height: 90vh;
+    background-color: lightcoral;
+    display: flex;
+}
+
+.left-main{
+    
+    width: 40%;
+    background-color: #0976a7;
+
+}
+.right-main{
+    
+    width: 60%;
+    background-color: #ffffff;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.course-title{
+    /* medium, larger, x-large, xx-large */
+    font-size: x-large;
+    padding: 20px;
+    width: 30%;
+}
+.menu-bar{
+    
+    width: 70%;
+    font-size: x-large;
+    /* justify-content to align elements inside */
+    justify-content: right;
+
+}
+
+/* padding: works inside a component */
+/* margin: works in between components */
+.add-space{
+    margin: 20px;
+}
+
+.trial-button{
+    margin:20px;
+    background-color: #0976a7;
+    border:none;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 8px;
+
+}
+
+.sign-in-text{
+    font-size: 55px;
+    font-weight: bolder;
+}
+.hyperlink-color{
+    color:#e90606
+}
+
+.icon{
+    color: #e90606;
+}
+
+.google-button{
+    width: 100%;  
+    background-color: white;
+    border: 1px solid grey;
+    color:grey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+
+}
+
+
+
+

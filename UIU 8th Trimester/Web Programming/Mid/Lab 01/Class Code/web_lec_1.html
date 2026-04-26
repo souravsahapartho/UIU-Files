@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        
+                .submit{
+                    background-color: green;
+                    color: white;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                }
+                .refresh{
+                    background-color: red;
+                    color: white;
+                }
+                .no-border{
+                    border: none;
+                }
+
+        </style>
+
+
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+               <th>name</th>
+               <th>id</th>
+               <th>course</th> 
+               <th>marks</th>
+            </tr>
+            <tr>
+                <td rowspan="2">A</td>
+                <td rowspan="2">1</td>
+                <td>CSE1111</td>
+                <td>73</td>
+            </tr>
+            <tr>
+                <td>CSE1112</td>
+                <td>88</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>2</td>
+                <td>CSE1111</td>
+                <td>77</td>
+            </tr>
+            <tr>
+                <td colspan="2">X</td>
+                <td>CSE1112</td>
+                <td>90</td>
+            </tr>
+    
+        </table>
+
+        <form method="post" action="http://localhost:8000/submit-info">
+            <fieldset>
+                <legend>Personal Info</legend>
+
+                <label>First Name</label>
+                <input type="text">
+
+                <label>Last Name</label>
+                <input type="text">
+
+                <br>
+                <br>
+
+                <label>Password</label>
+                <input type="password">
+                <br>
+                <br>
+
+                <label>Gender</label>
+                <br>
+                <label>Male</label>
+                <input type="radio">
+                <label>Female</label>
+                <input type="radio">
+                <label>Others</label>
+                <input type="radio">
+                
+            </fieldset>
+
+            <fieldset>
+                <legend>Appearence</legend>
+
+                <label>font size</label>
+                <input type="range" max="5" 
+                min="0" value="2">
+                <br>
+                <br>
+
+                <input list="courses">
+                <datalist id="courses">
+                    <option>CSE1111</option>
+                    <option>CSE1112</option>
+                    <option>CE1112</option>
+
+                </datalist>
+
+
+            </fieldset>
+
+            <br>
+            <br>
+
+            <button type="submit" class="submit no-border">Submit</button>
+            <button type="reset" class="refresh">Refresh</button>
+        </form>
+
+        <br>
+        <br>
+
+        <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfTpwudivbT4zuQF7sQesU4QKs670k5Vl3x6csuJ4H_8O301w/viewform"
+        height="400px"
+        width="400px"
+        >
+        </iframe>
+
+
+
+
+
+    </body>
+</html>
