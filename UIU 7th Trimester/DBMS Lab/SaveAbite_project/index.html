@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveABite - Full Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --p-green: #1b5e20; --p-gold: #FFAA00; }
+        .bg-save-green { background-color: var(--p-green); }
+        .bg-save-gold { background-color: var(--p-gold); }
+        .text-save-green { color: var(--p-green); }
+        .hero-gradient { 
+            background: linear-gradient(rgba(27, 94, 32, 0.9), rgba(27, 94, 32, 0.9)), 
+                        url('https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1350&q=80'); 
+            background-size: cover; 
+            background-position: center;
+        }
+        .animate-fadeIn { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+    <nav class="bg-save-green text-white p-4 shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="showSection('home')">
+                <div class="w-10 h-10 bg-save-gold rounded-full flex items-center justify-center text-green-900 font-bold">S</div>
+                <h1 class="text-2xl font-bold">SaveABite</h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-6 items-center">
+                <button onclick="showSection('home')" class="hover:text-yellow-400 font-medium transition">Home</button>
+                <button onclick="showSection('volunteer')" class="hover:text-yellow-400 font-medium transition">Volunteer</button>
+                <button onclick="showSection('donor')" class="hover:text-yellow-400 font-medium transition">Donate Food</button>
+                <button onclick="showSection('user_donate')" class="hover:text-yellow-400 font-medium transition">Support (৳)</button>
+                <button onclick="showSection('leaderboard')" class="hover:text-yellow-400 font-medium transition">Leaderboard</button>
+                
+                <div class="flex items-center space-x-4 ml-4 pl-4 border-l border-white/20">
+                    <button id="auth-btn" onclick="openModal()" class="bg-save-gold text-green-900 px-6 py-2 rounded-full font-bold hover:bg-yellow-500 transition">Sign In</button>
+                    <button id="profile-nav-btn" onclick="showSection('profile')" class="hidden w-10 h-10 bg-white rounded-full text-save-green font-bold border-2 border-save-gold flex items-center justify-center hover:scale-110 transition shadow-lg">U</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="auth-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100] p-4">
+        <div class="bg-white p-8 rounded-3xl w-full max-w-md relative shadow-2xl animate-fadeIn">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 text-2xl hover:text-gray-600 transition">&times;</button>
+            <h2 id="modal-title" class="text-3xl font-bold text-green-900 mb-2">Sign In</h2>
+            <p id="modal-sub" class="text-gray-500 mb-6 text-sm">Welcome back to the food rescue community.</p>
+            
+            <form id="auth-form" class="space-y-4">
+                <div id="signup-fields" class="hidden space-y-4">
+                    <input type="text" id="auth-name" placeholder="Your Full Name" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-save-green">
+                    <select id="auth-type" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-save-green">
+                        <option value="user">Normal User (Donate Money)</option>
+                        <option value="donor">Donor (Restaurant/Hotel)</option>
+                        <option value="volunteer">Volunteer (Rescuer)</option>
+                    </select>
+                    <select id="auth-zone" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-save-green">
+                        <option value="1">Dhaka South</option><option value="2">Dhaka North</option><option value="3">Chittagong</option>
+                    </select>
+                </div>
+                <input type="email" id="auth-email" placeholder="Email Address" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-save-green" required>
+                <input type="password" id="auth-pass" placeholder="Password" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-save-green" required>
+                <button type="submit" class="w-full bg-save-green text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-green-900 transition">Proceed</button>
+            </form>
+            <button onclick="toggleAuth()" id="toggle-text" class="mt-6 text-sm text-green-700 font-bold block text-center hover:underline">New here? Join us now</button>
+        </div>
+    </div>
+
+    <main class="container mx-auto mt-8 p-4">
+
+        <section id="home-section" class="block animate-fadeIn">
+            <div class="hero-gradient rounded-[2rem] p-16 text-white text-center shadow-2xl mb-12">
+                <h2 class="text-6xl font-black mb-6 leading-tight">Zero Waste. <br><span class="text-save-gold">Zero Hunger.</span></h2>
+                <p class="text-2xl opacity-90 max-w-2xl mx-auto mb-10">Real-time surplus food logistics for a sustainable Bangladesh.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="showSection('volunteer')" class="bg-white text-save-green px-10 py-4 rounded-full font-bold text-xl shadow-xl hover:scale-105 transition">Start Rescuing</button>
+                    <button onclick="showSection('donor')" class="bg-save-gold text-green-900 px-10 py-4 rounded-full font-bold text-xl shadow-xl hover:scale-105 transition">Donate Food</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="text-5xl font-black text-save-green mb-2" id="stat-meals">0</div>
+                    <div class="text-gray-500 font-bold uppercase tracking-widest text-xs">Meals Delivered</div>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="text-5xl font-black text-save-green mb-2" id="stat-users">0</div>
+                    <div class="text-gray-500 font-bold uppercase tracking-widest text-xs">Active Community</div>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="text-5xl font-black text-save-green mb-2" id="stat-money">৳0</div>
+                    <div class="text-gray-500 font-bold uppercase tracking-widest text-xs">Funds Raised</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="volunteer-section" class="hidden animate-fadeIn space-y-12">
+            <div class="flex justify-between items-center">
+                <h2 class="text-4xl font-bold text-gray-800 tracking-tight text-green-900">Mission Control</h2>
+                <div class="bg-green-100 text-green-800 px-6 py-2 rounded-full font-bold text-sm">Your Area: <span id="vol-zone-tag">Dhaka South</span></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-bold text-green-900 mb-6 flex items-center"><span class="mr-2 text-3xl">📍</span> Nearby Surpluses</h3>
+                    <div id="avail-missions" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center"><span class="mr-2 text-3xl">🚀</span> Active Tasks</h3>
+                    <div id="active-missions" class="space-y-4"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile-section" class="hidden max-w-4xl mx-auto animate-fadeIn">
+            <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden">
+                <div class="bg-save-green p-12 text-white relative">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div class="flex items-center space-x-6">
+                            <div id="prof-initial" class="w-24 h-24 bg-save-gold rounded-full flex items-center justify-center text-4xl font-black text-green-900 border-4 border-white shadow-xl">U</div>
+                            <div>
+                                <h2 id="prof-name" class="text-4xl font-bold text-white">User Name</h2>
+                                <div class="flex items-center space-x-2 mt-2">
+                                    <span id="prof-type-tag" class="bg-white/20 px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest">Volunteer</span>
+                                    <span id="prof-zone-tag" class="bg-save-gold/20 text-save-gold px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest">Dhaka South</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center bg-white/10 p-6 rounded-3xl border border-white/10 min-w-[160px]">
+                            <div class="text-save-gold text-6xl font-black" id="prof-points">0</div>
+                            <div class="text-[10px] uppercase font-bold tracking-[0.2em] opacity-60">Green Points</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-10">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-8 text-green-900">Rescue History</h3>
+                    <div id="prof-history-list" class="space-y-4"></div>
+                    <div class="mt-12 pt-10 border-t flex justify-between items-center">
+                        <button onclick="logout()" class="bg-red-50 text-red-600 px-8 py-3 rounded-2xl font-bold hover:bg-red-100 transition shadow-sm">Sign Out</button>
+                        <p class="text-xs text-gray-400">Security: Dual-Layer Verification Active</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="donor-section" class="hidden max-w-2xl mx-auto bg-white p-10 rounded-[2rem] shadow-2xl animate-fadeIn border-t-8 border-save-gold">
+            <h2 class="text-3xl font-bold text-green-900 mb-2">List Surplus Food</h2>
+            <p class="text-gray-500 mb-8">Ready to rescue? Post details and we'll notify local volunteers.</p>
+            <form id="food-form" class="space-y-6">
+                <textarea id="f-details" rows="3" placeholder="Description (e.g., 25 Boxes of Chicken Biryani)" class="w-full p-4 border rounded-2xl outline-none focus:ring-2 focus:ring-save-green bg-gray-50" required></textarea>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="f-qty" placeholder="Quantity" class="p-4 border rounded-2xl outline-none focus:ring-2 focus:ring-save-green bg-gray-50" required>
+                    <input type="datetime-local" id="f-deadline" class="p-4 border rounded-2xl outline-none focus:ring-2 focus:ring-save-green bg-gray-50" required>
+                </div>
+                <button type="submit" class="w-full bg-save-green text-white py-5 rounded-2xl font-bold text-xl shadow-lg hover:bg-green-900 transition">Create Listing</button>
+            </form>
+            <div id="otp-box" class="hidden mt-10 p-10 bg-green-50 border-4 border-dashed border-save-green rounded-[2rem] text-center">
+                <p class="text-save-green font-bold text-lg mb-4">Listing Active! OTP for Verification:</p>
+                <span id="res-otp" class="text-6xl font-black text-save-green tracking-[0.3em] font-mono">000000</span>
+            </div>
+        </section>
+
+        <section id="user_donate-section" class="hidden max-w-lg mx-auto bg-white p-12 rounded-[2rem] shadow-2xl animate-fadeIn">
+            <h2 class="text-3xl font-bold text-green-900 mb-3 text-center">Support Logistics</h2>
+            <p class="text-gray-500 mb-8 text-center px-4 text-sm">Donations fund fuel and hygiene kits for our local rescuers.</p>
+            <form id="money-form" class="space-y-6">
+                <input type="number" id="don-amount" placeholder="৳ Amount" class="w-full p-5 border rounded-2xl text-3xl font-black text-green-700 text-center outline-none focus:ring-2 focus:ring-save-green" required>
+                <input type="text" id="don-txid" placeholder="Transaction ID (BKash/Nagad)" class="w-full p-4 border rounded-2xl text-center outline-none focus:ring-2 focus:ring-save-green" required>
+                <button type="submit" class="w-full bg-save-green text-white py-5 rounded-2xl font-bold text-xl shadow-lg hover:bg-green-900 transition">Complete Donation</button>
+            </form>
+        </section>
+
+        <section id="admin-section" class="hidden animate-fadeIn">
+            <div class="mb-10">
+                <h2 class="text-4xl font-bold text-gray-800 text-green-900">System Dashboard</h2>
+                <p class="text-gray-500">Live oversight of platform impact and financial health.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white p-10 rounded-[2rem] shadow-lg border-b-[12px] border-green-600">
+                    <p class="text-gray-400 uppercase text-[10px] font-black tracking-widest mb-2">Total Funding</p>
+                    <h3 id="admin-money" class="text-5xl font-black text-green-700">৳0</h3>
+                </div>
+                <div class="bg-white p-10 rounded-[2rem] shadow-lg border-b-[12px] border-blue-600">
+                    <p class="text-gray-400 uppercase text-[10px] font-black tracking-widest mb-2">Delivered Meals</p>
+                    <h3 id="admin-food" class="text-5xl font-black text-blue-700">0</h3>
+                </div>
+                <div class="bg-white p-10 rounded-[2rem] shadow-lg border-b-[12px] border-purple-600">
+                    <p class="text-gray-400 uppercase text-[10px] font-black tracking-widest mb-2">Total Users</p>
+                    <h3 id="admin-users" class="text-5xl font-black text-purple-700">0</h3>
+                </div>
+            </div>
+            <div class="bg-white rounded-[2rem] p-10 shadow-2xl">
+                <h4 class="font-bold mb-8 text-2xl text-gray-800 text-green-900 border-b pb-4">Financial Audit Log</h4>
+                <div id="admin-tx-list" class="divide-y divide-gray-100"></div>
+            </div>
+        </section>
+
+        <section id="leaderboard-section" class="hidden max-w-3xl mx-auto animate-fadeIn">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-green-900 mb-2">Rescuer Hall of Fame</h2>
+                <p class="text-gray-500 font-medium tracking-wide">Top contributors to zero hunger in your city.</p>
+            </div>
+            <div id="leaderboard-list" class="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100"></div>
+        </section>
+
+    </main>
+
+    <script>
+        let user = JSON.parse(localStorage.getItem('user')) || null;
+        let mode = 'signin';
+        const ZONES = { 1: "Dhaka South", 2: "Dhaka North", 3: "Chittagong" };
+
+        function showSection(id) {
+            if(!user && ['donor', 'volunteer', 'profile', 'user_donate'].includes(id)) {
+                openModal(); return;
+            }
+            
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            const target = document.getElementById(id + '-section');
+            if(target) target.classList.remove('hidden');
+
+            // Data Fetchers
+            if(id === 'home') loadHomeStats();
+            if(id === 'admin') loadAdminStats();
+            if(id === 'volunteer') loadMissions();
+            if(id === 'leaderboard') loadLeaderboard();
+            if(id === 'profile') loadProfileData();
+            
+            window.scrollTo(0,0);
+        }
+
+        function openModal() { document.getElementById('auth-modal').classList.remove('hidden'); }
+        function closeModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+        function toggleAuth() {
+            mode = mode === 'signin' ? 'signup' : 'signin';
+            document.getElementById('modal-title').innerText = mode === 'signin' ? 'Sign In' : 'Join the Movement';
+            document.getElementById('signup-fields').classList.toggle('hidden', mode === 'signin');
+            document.getElementById('toggle-text').innerText = mode === 'signin' ? 'New here? Create an Account' : 'Already have an account? Sign In';
+        }
+
+        document.getElementById('auth-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const body = {
+                email: document.getElementById('auth-email').value,
+                password: document.getElementById('auth-pass').value,
+                name: document.getElementById('auth-name').value,
+                user_type: document.getElementById('auth-type').value,
+                zone_id: document.getElementById('auth-zone').value
+            };
+            try {
+                const res = await fetch(`api.php?action=${mode}`, { method: 'POST', body: JSON.stringify(body) });
+                const data = await res.json();
+                if(data.status === 'success') {
+                    if(mode === 'signin') {
+                        user = data.user;
+                        localStorage.setItem('user', JSON.stringify(user));
+                        location.reload();
+                    } else { alert("Account Ready! Log in now."); toggleAuth(); }
+                } else alert(data.message);
+            } catch(err) { alert("Backend Unreachable."); }
+        };
+
+        function logout() { localStorage.clear(); location.reload(); }
+
+        function updateNav() {
+            if(!user) return;
+            document.getElementById('auth-btn').classList.add('hidden');
+            const profBtn = document.getElementById('profile-nav-btn');
+            profBtn.classList.remove('hidden');
+            profBtn.innerText = user.name.charAt(0);
+        }
+
+        async function loadHomeStats() {
+            try {
+                const res = await fetch('api.php?action=admin_stats');
+                const data = await res.json();
+                document.getElementById('stat-meals').innerText = (data.meals || 0) + '+';
+                document.getElementById('stat-users').innerText = (data.users || 0) + '+';
+                document.getElementById('stat-money').innerText = '৳' + Number(data.money || 0).toLocaleString();
+            } catch(e) {}
+        }
+
+        async function loadAdminStats() {
+            try {
+                const res = await fetch('api.php?action=admin_stats');
+                const data = await res.json();
+                document.getElementById('admin-money').innerText = '৳' + Number(data.money || 0).toLocaleString();
+                document.getElementById('admin-food').innerText = data.meals || 0;
+                document.getElementById('admin-users').innerText = data.users || 0;
+                document.getElementById('admin-tx-list').innerHTML = data.recent.map(t => `
+                    <div class="flex justify-between items-center py-5">
+                        <div><p class="font-bold text-gray-900">${t.name}</p><p class="text-[10px] text-gray-400">TXID: ${t.transaction_id}</p></div>
+                        <span class="font-black text-green-700">৳${t.amount}</span>
+                    </div>
+                `).join('') || '<p class="py-10 text-center text-gray-400 italic">No transactions.</p>';
+            } catch(e) {}
+        }
+
+        async function loadProfileData() {
+            document.getElementById('prof-name').innerText = user.name;
+            document.getElementById('prof-type-tag').innerText = user.user_type;
+            document.getElementById('prof-zone-tag').innerText = user.zone_name || ZONES[user.zone_id] || "Dhaka";
+            document.getElementById('prof-initial').innerText = user.name.charAt(0);
+            
+            try {
+                const r1 = await fetch('api.php?leaderboard=1');
+                const stats = await r1.json();
+                const my = stats.find(s => s.volunteer_name === user.name);
+                document.getElementById('prof-points').innerText = my ? my.green_points : 0;
+                
+                const r2 = await fetch(`api.php?action=history&uid=${user.id}`);
+                const hist = await r2.json();
+                document.getElementById('prof-history-list').innerHTML = hist.map(h => `
+                    <div class="bg-gray-50 p-6 rounded-2xl flex justify-between items-center border border-gray-100">
+                        <div><p class="font-bold text-green-900">${h.food_details}</p><p class="text-[10px] text-gray-400 uppercase font-black">${h.status}</p></div>
+                        <div class="text-right text-xs text-gray-400 font-bold">${new Date(h.end_time).toLocaleDateString()}</div>
+                    </div>
+                `).join('') || '<p class="py-10 text-center text-gray-400 italic">No missions yet.</p>';
+            } catch(e) {}
+        }
+
+        async function loadMissions() {
+            document.getElementById('vol-zone-tag').innerText = user.zone_name || ZONES[user.zone_id] || "Dhaka";
+            try {
+                const r1 = await fetch('api.php?status=Available');
+                const avail = await r1.json();
+                document.getElementById('avail-missions').innerHTML = avail.map(m => `
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition group">
+                        <h4 class="font-black text-2xl text-green-900 mb-1">${m.food_details}</h4>
+                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-wider mb-6">Donor: ${m.donor_name}</p>
+                        <button onclick="claim(${m.id})" class="w-full bg-save-gold text-green-900 py-3 rounded-2xl font-black shadow-lg hover:bg-yellow-500 transition">Claim Task</button>
+                    </div>
+                `).join('') || '<p class="text-gray-400 py-10">No missions found.</p>';
+
+                const r2 = await fetch('api.php?status=Claimed');
+                const r3 = await fetch('api.php?status=In Transit');
+                const active = [...await r2.json(), ...await r3.json()].filter(m => m.volunteer_name === user.name);
+                document.getElementById('active-missions').innerHTML = active.map(m => `
+                    <div class="bg-blue-800 p-6 rounded-3xl text-white shadow-xl">
+                        <p class="font-black text-xl mb-1">${m.food_details}</p>
+                        <p class="text-[10px] opacity-70 uppercase font-black mb-6">${m.status}</p>
+                        ${m.status === 'Claimed' ? 
+                            `<button onclick="start(${m.id})" class="w-full bg-white text-blue-900 py-3 rounded-2xl font-bold">Start Ride</button>` :
+                            `<div class="flex space-x-2"><input id="otp-${m.id}" placeholder="OTP" class="text-black p-3 rounded-xl w-24 text-center font-black"><button onclick="verify(${m.id})" class="bg-green-500 px-6 py-3 rounded-xl font-bold flex-grow">Verify</button></div>`
+                        }
+                    </div>
+                `).join('') || '<p class="text-white/40 text-center py-6 italic text-sm">You have no active tasks.</p>';
+            } catch(e) {}
+        }
+
+        async function loadLeaderboard() {
+            try {
+                const res = await fetch('api.php?leaderboard=1');
+                const data = await res.json();
+                document.getElementById('leaderboard-list').innerHTML = data.map((v, i) => `
+                    <div class="flex justify-between items-center p-8 border-b ${i===0?'bg-yellow-50':''}">
+                        <div class="flex items-center space-x-6"><span class="text-3xl font-black text-gray-200 w-10">#${i+1}</span><span class="font-bold text-2xl text-gray-800">${v.volunteer_name}</span></div>
+                        <div class="text-right"><div class="text-save-green font-black text-3xl">${v.green_points}</div><div class="text-[10px] text-gray-400 font-black uppercase tracking-widest">Points</div></div>
+                    </div>
+                `).join('');
+            } catch(e) {}
+        }
+
+        document.getElementById('food-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const body = { donor_id: user.id, food_details: document.getElementById('f-details').value, quantity: document.getElementById('f-qty').value, pickup_deadline: document.getElementById('f-deadline').value };
+            const res = await fetch('api.php?action=post_food', { method: 'POST', body: JSON.stringify(body) });
+            const data = await res.json();
+            document.getElementById('res-otp').innerText = data.otp;
+            document.getElementById('otp-box').classList.remove('hidden');
+        };
+
+        document.getElementById('money-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const body = { user_id: user.id, amount: document.getElementById('don-amount').value, transaction_id: document.getElementById('don-txid').value };
+            await fetch('api.php?action=donate_money', { method: 'POST', body: JSON.stringify(body) });
+            alert("Donation Received!");
+            e.target.reset();
+        };
+
+        async function claim(id) { await fetch(`api.php?id=${id}&action=claim&name=${user.name}&uid=${user.id}`, { method: 'PUT' }); loadMissions(); }
+        async function start(id) { await fetch(`api.php?id=${id}&action=start`, { method: 'PUT' }); loadMissions(); }
+        async function verify(id) {
+            const otp = document.getElementById('otp-'+id).value;
+            const res = await fetch(`api.php?id=${id}&action=verify&otp=${otp}&name=${user.name}&uid=${user.id}`, { method: 'PUT' });
+            const data = await res.json();
+            if(data.status === 'success') { alert("OTP Verified! +10 Points."); loadMissions(); } else alert("OTP Error.");
+        }
+
+        updateNav();
+        window.onload = () => {
+            
+            if(user && user.user_type === 'admin') showSection('admin');
+            else showSection('home');
+        };
+    </script>
+</body>
+</html>
