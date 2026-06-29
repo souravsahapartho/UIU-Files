@@ -1,8 +1,3 @@
--- ============================================================
--- ELMS Platform Full Database Schema
--- Run this in MySQL (phpMyAdmin, MySQL Workbench, Railway, etc.)
--- ============================================================
-
 -- 1. Users Table
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
