@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Bill Calculator</title>
+</head>
+<body>
+
+    <h2>Electricity Bill Calculator</h2>
+
+    <!-- Location -->
+    <label>Location:</label>
+    <select id="location">
+        <option value="">Select Location</option>
+        <option value="Dhaka">Dhaka</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <br><br>
+
+    <!-- Area -->
+    <label>Area:</label>
+
+    <input type="radio" name="area" value="Urban"> Urban
+
+    <input type="radio" name="area" value="Rural"> Rural
+
+    <br><br>
+
+    <!-- Unit -->
+    <label>Unit Consumed:</label>
+
+    <input type="number" id="unit">
+
+    <br><br>
+
+    <button onclick="calculateBill()">Calculate Bill</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+
+        function calculateBill() {
+
+            // Get values
+            let location = document.getElementById("location").value;
+
+            let area = document.querySelector('input[name="area"]:checked');
+
+            let unit = Number(document.getElementById("unit").value);
+
+            // Validation
+            if (location == "") {
+                document.getElementById("result").innerHTML =
+                "Please select a location.";
+                return;
+            }
+
+            if (area == null) {
+                document.getElementById("result").innerHTML =
+                "Please select Urban or Rural.";
+                return;
+            }
+
+            if (unit <= 0) {
+                document.getElementById("result").innerHTML =
+                "Please enter a valid unit.";
+                return;
+            }
+
+            // Rate
+            let rate = 0;
+
+            if (location == "Dhaka") {
+
+                if (area.value == "Urban") {
+                    rate = 7.5;
+                }
+                else {
+                    rate = 6.5;
+                }
+
+            }
+            else {
+
+                if (area.value == "Urban") {
+                    rate = 6.5;
+                }
+                else {
+                    rate = 5.5;
+                }
+
+            }
+
+            // Bill
+            let bill = unit * rate;
+
+            // Surcharge
+            if (bill > 5000) {
+                bill = bill + (bill * 0.05);
+            }
+
+            // VAT
+            bill = bill + (bill * 0.10);
+
+            // Output
+            document.getElementById("result").innerHTML =
+            "Total Bill = " + bill.toFixed(2) + " Taka";
+
+        }
+
+    </script>
+
+</body>
+</html>

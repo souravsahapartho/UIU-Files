@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart Tracker</title>
+</head>
+<body>
+
+    <h2>Shopping Cart Tracker</h2>
+
+    <input type="number" id="price" placeholder="Enter Product Price">
+    <button onclick="addProduct()">Add Product</button>
+
+    <h3>All Product Prices:</h3>
+    <p id="prices"></p>
+
+    <h3>Total Cost:</h3>
+    <p id="total"></p>
+
+    <h3>Number of Products:</h3>
+    <p id="count"></p>
+
+    <h3>Expensive Products (Price > 500):</h3>
+    <p id="expensive"></p>
+
+    <h3>Discounted Prices (10% Off):</h3>
+    <p id="discount"></p>
+
+    <h3>Feedback:</h3>
+    <p id="feedback"></p>
+
+    <script>
+
+        let prices = [];
+
+        function addProduct() {
+
+            let price = Number(document.getElementById("price").value);
+
+            if (isNaN(price) || price <= 0) {
+                alert("Enter a valid price!");
+                return;
+            }
+
+            // Add price to array
+            prices.push(price);
+
+            // Display all prices
+            document.getElementById("prices").innerHTML = prices.join(", ");
+
+            // Calculate total cost
+            let total = prices.reduce(function(sum, value) {
+                return sum + value;
+            }, 0);
+
+            document.getElementById("total").innerHTML = total;
+
+            // Number of products
+            document.getElementById("count").innerHTML = prices.length;
+
+            // Expensive products (price > 500)
+            let expensive = prices.filter(function(value) {
+                return value > 500;
+            });
+
+            document.getElementById("expensive").innerHTML = expensive.join(", ");
+
+            // Discounted prices (10% off)
+            let discount = prices.map(function(value) {
+                return value * 0.9;
+            });
+
+            document.getElementById("discount").innerHTML = discount.join(", ");
+
+            // Feedback
+            if (total <= 1000) {
+                document.getElementById("feedback").innerHTML = "You can shop more!";
+            }
+            else if (total <= 3000) {
+                document.getElementById("feedback").innerHTML = "Good shopping!";
+            }
+            else {
+                document.getElementById("feedback").innerHTML = "Budget exceeded!";
+            }
+
+            // Clear input
+            document.getElementById("price").value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>

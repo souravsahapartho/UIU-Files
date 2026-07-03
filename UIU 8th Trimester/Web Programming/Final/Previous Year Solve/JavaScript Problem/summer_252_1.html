@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Calorie Tracker</title>
+</head>
+<body>
+
+    <h1>Daily Calorie Tracker</h1>
+
+    <input type="number" id="calorie" placeholder="Enter Calories">
+    <button onclick="addCalories()">Add Calories</button>
+
+    <h2 id="total">Total Calories: 0</h2>
+    <h2 id="message">Feedback:</h2>
+
+    <script>
+
+        // Daily calorie goal
+        const goal = 2000;
+
+        // Total calories
+        let totalCalories = 0;
+
+        // Number of entries
+        let entries = 0;
+
+        // Function
+        function addCalories() {
+
+            // Take input
+            let calories = Number(document.getElementById("calorie").value);
+
+            // If input is empty
+            if (calories <= 0) {
+                alert("Please enter calories.");
+                return;
+            }
+
+            // Add calories
+            totalCalories = totalCalories + calories;
+
+            // Count entries
+            entries++;
+
+            // Show total calories
+            document.getElementById("total").innerHTML =
+                "Total Calories: " + totalCalories;
+
+            // Feedback
+            let feedback = "";
+
+            if (entries > 10 && totalCalories < goal) {
+                feedback = "Be cautious of frequent snacking!";
+            }
+            else if (totalCalories <= 800) {
+                feedback = "You're off to a healthy start!";
+            }
+            else if (totalCalories <= 1600) {
+                feedback = "Good progress, keep it balanced!";
+            }
+            else if (totalCalories <= 1999) {
+                feedback = "Almost at your limit!";
+            }
+            else {
+                feedback = "Goal reached! Stay mindful!";
+            }
+
+            // Show feedback
+            document.getElementById("message").innerHTML =
+                "Feedback: " + feedback;
+
+            // Clear input box
+            document.getElementById("calorie").value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>

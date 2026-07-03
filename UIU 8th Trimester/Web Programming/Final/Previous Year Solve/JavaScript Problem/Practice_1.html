@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>MArks calculation</h3>
+
+    <input type="number" name="" id="mark" />
+    <br />
+    <button onclick="addMarks()">Calculate</button>
+
+    <h3>Marks:</h3>
+    <p id="marks"></p>
+
+    <h3>Total Marks:</h3>
+    <p id="total"></p>
+
+    <h3>Average:</h3>
+    <p id="avg"></p>
+
+    <h3>Feedback:</h3>
+    <p id="feedback"></p>
+
+    <script>
+      let marks = [];
+
+      function addMarks() {
+        let mark = Number(document.getElementById("mark").value);
+
+        marks.push(mark);
+
+        document.getElementById("marks").innerHTML = marks.join(", ");
+
+        let total = marks.reduce(function (sum, value) {
+          return sum + value;
+        }, 0);
+
+        document.getElementById("total").innerHTML = total;
+
+        let avg = total / marks.length;
+        document.getElementById("avg").innerHTML = avg;
+
+        if (avg < 40) {
+          document.getElementById("feedback").innerHTML = "need improve!";
+        } else if (avg >= 40 && avg <= 59) {
+          document.getElementById("feedback").innerHTML = "Fair";
+        } else if (avg >= 60 && avg <= 79) {
+          document.getElementById("feedback").innerHTML = "Good";
+        } else {
+          document.getElementById("feedback").innerHTML = "Excellent";
+        }
+        if (marks.length > 10) {
+          document.getElementById("feedback").innerHTML = "Maximum";
+        }
+        document.getElementById("mark").value = "";
+      }
+    </script>
+  </body>
+</html>
+
+
+/*
+    Create an empty array to store all student marks.
+*/
+
+/*
+    Create a function named addMarks().
+*/
+
+/*
+    Get the mark entered by the user from the input field.
+*/
+
+/*
+    Convert the input value into a Number.
+*/
+
+/*
+    Check if the entered mark is valid (0–100).
+    If invalid, show an alert and stop the function.
+*/
+
+/*
+    Add the mark to the array using push().
+*/
+
+/*
+    Display all marks using join().
+*/
+
+/*
+    Calculate the total marks using reduce().
+*/
+
+/*
+    Display the total marks.
+*/
+
+/*
+    Calculate the average marks.
+*/
+
+/*
+    Display the average marks.
+*/
+
+/*
+    Display feedback based on the average:
+    - Average < 40  → "Need Improvement!"
+    - Average 40–59 → "Fair Performance!"
+    - Average 60–79 → "Good Job!"
+    - Average 80–100 → "Excellent!"
+*/
+
+/*
+    Check if more than 10 marks have been entered.
+    If yes, display "Maximum entries reached!"
+*/
+
+/*
+    Clear the input field for the next entry.
+*/

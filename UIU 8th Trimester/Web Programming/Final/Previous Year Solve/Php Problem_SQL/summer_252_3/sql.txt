@@ -1,0 +1,17 @@
+use sundarban1;
+create table sales_data(
+    SaleID int PRIMARY key,
+    ProductName varchar(50),
+    CategoryID int,
+    CategoryName varchar(100),
+    Quantity int,
+    revenue int
+);
+
+Insert into sales_data values
+(1,'Laptop',301,'Electronics',5,350000),
+(2,'Mouse',301,'Electronics',15,45000),
+(3,'Chair',302,'Furniture',8,64000),
+(4,'Desk',302,'Furniture',6,72000),
+(5,'Bottle',303,'Accessories',20,30000),
+(6,'Laptop',303,'Accessories',25,20000);

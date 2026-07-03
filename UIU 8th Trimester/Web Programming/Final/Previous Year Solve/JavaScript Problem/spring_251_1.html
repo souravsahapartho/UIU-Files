@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Checker</title>
+</head>
+<body>
+
+    <h2>Password Strength Checker</h2>
+
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="checkStrength()">Check Strength</button>
+
+    <h3>Score:</h3>
+    <p id="score"></p>
+
+    <h3>Strength:</h3>
+    <p id="strength"></p>
+
+    <script>
+
+        let attempts = 0;
+
+        function checkStrength() {
+
+            let password = document.getElementById("password").value;
+
+            let score = 0;
+
+            attempts++;
+
+            if (password.length >= 6) {
+                score += Math.floor(password.length / 2) * 10;
+            }
+
+            if (/[A-Z]/.test(password)) {
+                score += 15;
+            }
+
+            if (/[a-z]/.test(password)) {
+                score += 15;
+            }
+
+            if (/[0-9]/.test(password)) {
+                score += 20;
+            }
+
+            if (/[!@#$%^&*]/.test(password)) {
+                score += 25;
+            }
+           if (score > 100) {
+                score = 100;
+            }
+
+            document.getElementById("score").innerHTML = score;
+
+            if (score <= 30) {
+                document.getElementById("strength").innerHTML = "Very Weak";
+            }
+            else if (score <= 50) {
+                document.getElementById("strength").innerHTML = "Weak";
+            }
+            else if (score <= 70) {
+                document.getElementById("strength").innerHTML = "Medium";
+            }
+            else if (score <= 90) {
+                document.getElementById("strength").innerHTML = "Strong";
+            }
+            else {
+                document.getElementById("strength").innerHTML = "Very Strong";
+            }
+
+            if (score == 100) {
+                document.getElementById("strength").innerHTML = "Perfect Password!";
+            }
+
+            if (attempts > 8 && score < 71) {
+                document.getElementById("strength").innerHTML =
+                "Need practice!! Suggestion: Use uppercase, lowercase, numbers and special characters.";
+            }
+
+            document.getElementById("password").value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>

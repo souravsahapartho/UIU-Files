@@ -1,0 +1,17 @@
+use campus_library;
+create table book_loans(
+    LoanID int PRIMARY key,
+    StudentName varchar(30),
+    BookTitle varchar(40),
+    DayOverdue int,
+    PenaltyFee Decimal(4,2),
+    Status varchar(10)
+    
+   );
+
+Insert into book_loans VALUES
+(101,'Abdul','Data Structures', 0, 0.00, 'Returned'),
+ (102,'Jabbar','Operating Systems', 12, 24.00, 'Overdue'),(103,'Barkat','Discrete Math', 5, 10.00, 'Overdue'),
+ (104,'Rahim','Linear Algebra', 2, 4.00, 'Overdue'),
+ (105,'Karim','Data Structures', 15, 30.00, 'Lost'),
+ (106,'Fahim','Operating Systems', 0, 0.00, 'Returned');
