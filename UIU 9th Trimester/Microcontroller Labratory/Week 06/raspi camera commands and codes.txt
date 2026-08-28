@@ -1,0 +1,69 @@
+Raspberry Pi 5 Camera Module Interface
+This tutorial explains how to interface RPi camera using Raspberry Pi 5.
+
+Write this code in terminal window to check if the camera has been interfaced properly:
+
+rpicam-hello
+
+Write this code in terminal window to capture a still image:
+
+rpicam-still -o Desktop/image.jpg
+
+Write this code in terminal window to record a video:
+
+rpicam-vid -o Desktop/video.mp4
+
+Python Code example for camera preview:
+
+import time
+from picamera2 import Picamera2, Preview #picamera2 is the libcamera library version for raspberry pi cameras
+#libcamera is older camera library
+picam2 = Picamera2() #create an object to reference Picamera2
+picam2.start_preview(Preview.QTGL) #use GPU to display image
+picam2.start()
+time.sleep(5)
+picam2.close()
+
+Python Code example to flip camera preview:
+
+import time
+from picamera2 import Picamera2, Preview 
+from libcamera import Transform
+
+picam2 = Picamera2() 
+picam2.start_preview(Preview.QTGL, transform=Transform(hflip=True, vflip=True)) #flip camera 180 degrees
+picam2.start()
+time.sleep(5)
+picam2.close()
+
+Python Code example to capture image and save it in Desktop:
+
+import time
+from picamera2 import Picamera2, Preview 
+from libcamera import Transform
+
+picam2 = Picamera2() 
+#img_size = {"size":(1640,1232)}
+#pic_config = picam2.create_still_configuration(img_size, transform=Transform(hflip=True, vflip=True))
+#picam2.configure(pic_config)
+
+picam2.start_and_capture_file("/home/pi/Desktop/new_image.jpg")
+#picam2.start_and_capture_file(new_image.jpg") #save image in the same folder as Python code
+
+time.sleep(5)
+picam2.close()
+
+Python Code example to record video and save it in Desktop:
+
+import time
+from picamera2 import Picamera2, Preview
+from libcamera import Transform
+
+picam2 = Picamera2()
+#img_size = {"size":(1640,1232)}
+#pic_config = picam2.create_still_configuration(img_size, transform=Transform(hflip=True, vflip=True))
+#picam2.configure(pic_config)
+
+picam2.start_and_record_video("/home/pi/Desktop/new_video.mp4", duration = 5, show_preview=True)
+
+picam2.close()
