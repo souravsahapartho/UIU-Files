@@ -1,0 +1,39 @@
+#include <DHT.h>
+#define DHTPIN 19 //D19
+#define DHTTYPE DHT11
+
+DHT dht11(DHTPIN, DHTTYPE); // declare an object “dht11”
+
+int temperature = 0;
+int humidity = 0;
+
+void setup() {
+  Serial.begin(115200);
+  dht11.begin(); // Initialize the sensor
+}
+
+void loop() {
+  Load_DHT11_Data();
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" °C");
+  delay(2000);
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+  delay(2000);
+}
+
+void Load_DHT11_Data() {
+  //-----------------------------------------------------------
+  temperature = dht11.readTemperature(); //Celsius
+  humidity = dht11.readHumidity();
+  //-----------------------------------------------------------
+  
+  // Check if any reads failed.
+  if (isnan(temperature) || isnan(humidity)) {
+    Serial.println("Failed to read from DHT sensor!");
+    temperature = 0;
+    humidity = 0; 
+  }
+}

@@ -1,0 +1,81 @@
+<!-- <?php
+echo "Hello World<br>";
+?> -->
+
+<!-- <?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "sensor_db"; //For this example, it is sensor_db
+$conn = mysqli_connect($hostname, $username, $password, $database);
+if (!$conn) {
+die("Connection failed: " . mysqli_connect_error());
+}
+echo "Database connection is OK<br>";
+?> -->
+
+<!-- <?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "sensor_db"; //For this example, it is sensor_db
+$conn = mysqli_connect($hostname, $username, $password, $database);
+if (!$conn) {
+die("Connection failed: " . mysqli_connect_error());
+}
+echo "Database connection is OK<br>";
+
+$sql = "INSERT INTO dht11 (Temperature, Humidity) VALUES (20, 30)";
+if (mysqli_query($conn, $sql)) {
+echo "\nNew record created successfully";
+} else {
+echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+?> -->
+
+<!-- <?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "sensor_db"; //For this example, it is sensor_db
+$conn = mysqli_connect($hostname, $username, $password, $database);
+if (!$conn) {
+die("Connection failed: " . mysqli_connect_error());
+}
+echo "Database connection is OK<br>";
+
+$t = 1;
+$h = 2;
+$sql = "INSERT INTO dht11 (Temperature, Humidity) VALUES (".$t.", ".$h.")";
+if (mysqli_query($conn, $sql)) {
+echo "\nNew record created successfully";
+} else {
+echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+?> -->
+
+<!-- <?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "sensor_db"; //For this example, it is sensor_db
+$conn = mysqli_connect($hostname, $username, $password, $database);
+if (!$conn) {
+die("Connection failed: " . mysqli_connect_error());
+}
+echo "Database connection is OK<br>";
+
+if(isset($_POST["temperature"]) && isset($_POST["humidity"])) {
+    $t = $_POST["temperature"];
+    $h = $_POST["humidity"];
+    $sql = "INSERT INTO dht11 (Temperature, Humidity) VALUES (".$t.",".$h.")";
+    if (mysqli_query($conn, $sql)) {
+        echo "\nNew record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+} else {
+echo "Error in getting data from ESP32<br>";
+}
+?> -->
