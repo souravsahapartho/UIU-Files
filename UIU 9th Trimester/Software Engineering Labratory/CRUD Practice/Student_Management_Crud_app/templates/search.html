@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search Student</title>
+  </head>
+  <body>
+    <h1>Search Result</h1>
+
+    {% if student %}
+
+    <table border="3">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>CGPA</th>
+        <th>Semester</th>
+      </tr>
+
+      <tr>
+        <td>{{ student["id"] }}</td>
+        <td>{{ student["name"] }}</td>
+        <td>{{ student["department"] }}</td>
+        <td>{{ student["cgpa"] }}</td>
+        <td>{{ student["semester"] }}</td>
+      </tr>
+    </table>
+
+    {% else %}
+
+    <h2>Student Not Found!</h2>
+
+    {% endif %}
+  </body>
+</html>

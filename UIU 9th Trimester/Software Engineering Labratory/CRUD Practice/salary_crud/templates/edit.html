@@ -1,0 +1,23 @@
+<h1>Edit salary</h1>
+
+<form method="POST">
+  Name:
+  <input
+    type="text"
+    name="name"
+    id=""
+    value="{{salary ['name']}}"
+  /><br /><br />
+  Department:
+  <input
+    type="text"
+    name="department"
+    id=""
+    value="{{salary ['department']}}"
+  />
+  <br /><br />
+  Salary:
+  <input type="number" name="salary" id="" value="{{salary ['salary']}}" />
+  <br /><br />
+  <button type="submit">Update</button>
+</form>

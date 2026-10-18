@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Students Management App</title>
+  </head>
+  <body>
+    <a href="/add">Add Data</a>
+    <h1>Students Data</h1>
+    <table border="3">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>CGPA</th>
+        <th>Semester</th>
+      </tr>
+      {% for student in students %}
+      <tr>
+        <td>{{ student["id"] }}</td>
+        <td>{{ student["name"] }}</td>
+        <td>{{ student["department"] }}</td>
+        <td>{{ student["cgpa"] }}</td>
+        <td>{{ student["semester"] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br /><br />
+    <a href="/high">CGPA Greater than 3.50</a>
+    <br /><br />
+    <a href="/update">Update 10%</a>
+    <br /><br />
+    <a href="/delete">Delete below CGPA=3.00</a>
+    <br /><br />
+    <a href="/avg">Average</a>
+    <br /><br />
+    <a href="/max_min">Maximum & Minimum</a>
+    <br /><br />
+    <a href="/count">Total CSE Student</a>
+    <br /><br />
+    <a href="/sort">Sorted by descending</a>
+    <br /><br />
+    <a href="/search/S103">Search S103</a>
+  </body>
+</html>

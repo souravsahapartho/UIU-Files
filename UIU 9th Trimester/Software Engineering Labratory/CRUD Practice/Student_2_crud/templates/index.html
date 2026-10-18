@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Students data</title>
+  </head>
+  <body>
+    <h1>students data</h1>
+    <table border="3">
+      <tr>
+        <th>student_id</th>
+        <th>name</th>
+        <th>department</th>
+        <th>cgpa</th>
+      </tr>
+      {% for student in students %}
+      <tr>
+        <td>{{student ["id"]}}</td>
+        <td>{{student ["name"]}}</td>
+        <td>{{student ["department"]}}</td>
+        <td>{{student ["cgpa"]}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="/add">ADD</a>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Management</title>
+  </head>
+  <body>
+    <h1>Products Data</h1>
+    <table border="3">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+      </tr>
+      {% for product in products %}
+      <tr>
+        <td>{{product["id"]}}</td>
+        <td>{{product["name"]}}</td>
+        <td>{{product["category"]}}</td>
+        <td>{{product["price"]}}</td>
+        <td>
+          <a href="/edit/{{product['id']}}">Edit</a>
+          <a href="/delete/{{product['id']}}">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br /><br />
+    <a href="/add">Add Data</a>
+    <br /><br />
+    <a href="/show">Show greater than 30000</a>
+    <br /><br />
+    <a href="/increase">Increase by 10%</a>
+    <br /><br />
+    <a href="/delete1">Delete less than 3000</a>
+    <br /><br />
+    <a href="/mmh">max Min Avg</a>
+    <br /><br />
+    <a href="/search">Search Laptop</a>
+    <br /><br />
+    <a href="/asc">Ascending</a>
+    <br /><br />
+    <a href="/desc">Descending</a>
+    <br /><br />
+    <a href="/count">Count</a>
+  </body>
+</html>

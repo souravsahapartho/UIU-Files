@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses</title>
+  </head>
+  <body>
+    <h1>Course Details</h1>
+    <a href="/add">Add Course</a>
+    <br />
+    <br />
+    <table border="3">
+      <tr>
+        <td>ID</td>
+        <td>Course Name</td>
+        <td>Fee</td>
+      </tr>
+      {% for course in courses %}
+      <tr>
+        <td>{{course["id"]}}</td>
+        <td>{{course["title"]}}</td>
+        <td>{{course["fee"]}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br />
+    <a href="/high">Check High Value Courses</a>
+    <br />
+    <br />
+    <a href="/update">Increase 10% Fee</a>
+    <br /><br />
+    <a href="/delete">Fee Less Than 6000 Remove</a>
+    <br /><br />
+    <a href="/avg">Average</a>
+    <br /><br />
+    <a href="/max_min">Maximum & Minimum Fee</a>
+  </body>
+</html>

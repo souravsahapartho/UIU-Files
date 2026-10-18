@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fee Less Than 6000</title>
+  </head>
+  <body>
+    <a href="/">Back To Home</a>
+    <table border="3">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Fee</th>
+      </tr>
+      {% for course in courses %}
+      <tr>
+        <td>{{course["id"]}}</td>
+        <td>{{course["title"]}}</td>
+        <td>{{course["fee"]}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salary greater than 40000</title>
+  </head>
+  <body>
+    <table border="3">
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Salary</th>
+      </tr>
+      {% for salary in salarys %}
+      <tr>
+        <td>{{salary["id"]}}</td>
+        <td>{{salary ["name"]}}</td>
+        <td>{{salary ["department"]}}</td>
+        <td>{{salary ["salary"]}}</td>
+        <td>
+          <a href="/edit/{{salary ['id']}}">Edit</a>
+          <a href="/delete/{{salary ['id']}}">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

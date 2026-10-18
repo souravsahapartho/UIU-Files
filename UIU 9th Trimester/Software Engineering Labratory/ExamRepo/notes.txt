@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+git in a version contorl system.
+this line
+=======
+this line was
+>>>>>>> design-change

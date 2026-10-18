@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorted by descending</title>
+  </head>
+  <body>
+    <h1>Sorted by descending order</h1>
+    <table border="3">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>CGPA</th>
+        <th>Semester</th>
+      </tr>
+      {% for student in students %}
+      <tr>
+        <td>{{ student["id"] }}</td>
+        <td>{{ student["name"] }}</td>
+        <td>{{ student["department"] }}</td>
+        <td>{{ student["cgpa"] }}</td>
+        <td>{{ student["semester"] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

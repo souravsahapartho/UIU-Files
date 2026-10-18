@@ -1,0 +1,19 @@
+<h1>Edit the Students</h1>
+
+<form method="POST">
+  Name:
+  <input type="text" name="name" id="" value="{{ student['name']}}" />
+  <br />
+  Email:
+  <input type="email" name="email" id="" value="{{ student ['email']}}" />
+  <br />
+  Department:
+  <input
+    type="text"
+    name="department"
+    id=""
+    value="{{ student ['department']}}"
+  />
+  <br />
+  <button type="submit">Update</button>
+</form>

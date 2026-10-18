@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salary data</title>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <body>
+        <h1>Salary Data</h1>
+        <table border="3">
+          <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Salary</th>
+          </tr>
+          {% for salary in salarys %}
+          <tr>
+            <td>{{salary["id"]}}</td>
+            <td>{{salary ["name"]}}</td>
+            <td>{{salary ["department"]}}</td>
+            <td>{{salary ["salary"]}}</td>
+            <td>
+              <a href="/edit/{{salary ['id']}}">Edit</a>
+              <a href="/delete/{{salary ['id']}}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <br />
+        <a href="/add">Add Data</a>
+        <br /><br />
+        <a href="/show">Show 40000 salary</a>
+        <br /><br />
+        <a href="/increase">Increase 10%</a>
+        <br /><br />
+        <a href="/delete3">Delete salary below 30000</a>
+        <br /><br />
+        <a href="/max_min_avg">calculate max min avg</a>
+        <br /><br />
+        <a href="/alice">Search</a>
+        <br /><br />
+        <a href="/sort">Ascending</a>
+        <br /><br />
+        <a href="/desc">Descending</a>
+        <br><br>
+        <a href="/count">Count total employee</a>
+      </body>
+    </html>
+  </body>
+</html>
