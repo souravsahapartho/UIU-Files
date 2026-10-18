@@ -1,0 +1,8 @@
+Links for practice
+
+1. http://rahulshettyacademy.com/client/
+2. http://rahulshettyacademy.com/angularpractice/
+3. http://rahulshettyacademy.com/AutomationPractice/
+4. http://rahulshettyacademy.com/seleniumPractise/
+
+Try practicing basic selenium operations on your regular websites like UCAM and ELMS

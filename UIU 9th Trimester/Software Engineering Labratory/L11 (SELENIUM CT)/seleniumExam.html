@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Selenium Lab Examination Portal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .form-control {
+            width: 300px;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .btn-submit {
+            background-color: green;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .alert-success {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .alert-danger {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .section-box {
+            border: 1px solid gray;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        #summaryBox {
+            border: 1px solid green;
+            padding: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+
+    <script>
+
+        function submitForm() {
+
+            document.getElementById("successMsg").innerHTML = "";
+            document.getElementById("errorMsg").innerHTML = "";
+
+            let studentID =
+                document.getElementById("studentID").value;
+
+            let name =
+                document.getElementById("studentName").value;
+
+            let email =
+                document.getElementById("studentEmail").value;
+
+            let password =
+                document.getElementById("studentPassword").value;
+
+            let department =
+                document.getElementById("department").value;
+
+            let agreement =
+                document.getElementById("agreement").checked;
+
+            let year =
+                document.querySelector(
+                    'input[name="year"]:checked'
+                );
+
+            let emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Student ID validation
+
+            if (!studentID.startsWith("011")) {
+
+                document.getElementById("errorMsg")
+                    .innerHTML =
+                    "Invalid Student ID";
+
+                return;
+            }
+
+            // Name validation
+
+            if (name.trim() === "") {
+
+                document.getElementById("errorMsg")
+                    .innerHTML =
+                    "Name cannot be empty";
+
+                return;
+            }
+
+            // Email validation
+
+            if (!emailPattern.test(email)) {
+
+                document.getElementById("errorMsg")
+                    .innerHTML =
+                    "Invalid Email Format";
+
+                return;
+            }
+
+            // Password validation
+
+            if (password.length < 6) {
+
+                document.getElementById("errorMsg")
+                    .innerHTML =
+                    "Password must be at least 6 characters";
+
+                return;
+            }
+
+            // Year validation
+
+            if (year == null) {
+
+                document.getElementById("errorMsg")
+                    .innerHTML =
+                    "Please select a year";
+
+                return;
+            }
+
+            // Agreement validation
+
+            if (!agreement) {
+
+                document.getElementById("errorMsg")
+                    .innerHTML =
+                    "You must accept the terms and conditions";
+
+                return;
+            }
+
+            document.getElementById("successMsg")
+                .innerHTML =
+                "Registration Successful";
+
+            document.getElementById("summaryBox")
+                .style.display =
+                "block";
+
+            document.getElementById("summaryBox")
+                .innerHTML =
+                "<h3>Registration Summary</h3>" +
+                "<p><b>ID:</b> " + studentID + "</p>" +
+                "<p><b>Name:</b> " + name + "</p>" +
+                "<p><b>Email:</b> " + email + "</p>" +
+                "<p><b>Department:</b> " + department + "</p>" +
+                "<p><b>Year:</b> " + year.value + "</p>";
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1 id="mainHeading">
+        Selenium Examination Portal
+    </h1>
+
+    <h2 class="course-title">
+        Software Engineering Laboratory
+    </h2>
+
+    <div class="section-box">
+
+        <h3>Student Registration Form</h3>
+
+        <label>Student ID</label><br>
+
+        <input
+            type="text"
+            id="studentID"
+            name="student_id"
+            class="form-control"
+            placeholder="011XXXXXXXX">
+
+        <br>
+
+        <label>Name</label><br>
+
+        <input
+            type="text"
+            id="studentName"
+            name="student_name"
+            class="form-control"
+            placeholder="Enter Name">
+
+        <br>
+
+        <label>Email</label><br>
+
+        <input
+            type="email"
+            id="studentEmail"
+            name="student_email"
+            class="form-control"
+            placeholder="Enter Email">
+
+        <br>
+
+        <label>Password</label><br>
+
+        <input
+            type="password"
+            id="studentPassword"
+            class="form-control"
+            placeholder="Minimum 6 characters">
+
+        <br>
+
+        <label>Department</label><br>
+
+        <select
+            id="department"
+            class="form-control">
+
+            <option>CSE</option>
+            <option>EEE</option>
+            <option>BBA</option>
+            <option>English</option>
+
+        </select>
+
+        <br>
+
+        <label>Academic Year</label><br>
+
+        <input
+            type="radio"
+            name="year"
+            id="year1"
+            value="1st Year">
+        First Year
+
+        <br>
+
+        <input
+            type="radio"
+            name="year"
+            id="year2"
+            value="2nd Year">
+        Second Year
+
+        <br>
+
+        <input
+            type="radio"
+            name="year"
+            id="year3"
+            value="3rd Year">
+        Third Year
+
+        <br><br>
+
+        <input
+            type="checkbox"
+            id="agreement">
+
+        I agree to the terms and conditions
+
+        <br><br>
+
+        <button
+            type="button"
+            id="submitBtn"
+            class="btn-submit"
+            onclick="submitForm()">
+
+            Register
+
+        </button>
+
+        <div
+            id="successMsg"
+            class="alert-success">
+        </div>
+
+        <div
+            id="errorMsg"
+            class="alert-danger">
+        </div>
+
+        <div
+            id="summaryBox">
+        </div>
+
+    </div>
+
+    <div class="section-box">
+
+        <h2>Announcements</h2>
+
+        <p class="announcement">
+            Final Presentation next week!!!
+        </p>
+
+        <p class="announcement">
+            Selenium Lab Exam today.
+        </p>
+
+        <p class="announcement">
+            Prepare the final project demo video (maximum 5 minutes) and project report.
+        </p>
+
+        <p class="announcement">
+            Sample Project reports will be updated .
+        </p>
+
+    </div>
+
+</body>
+
+</html>

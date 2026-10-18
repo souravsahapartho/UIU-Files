@@ -1,0 +1,6 @@
+Library Catalog
+<<<<<<< HEAD
+Something added on catalog.txt from master
+=======
+catalog file updated from invenory
+>>>>>>> inventory
